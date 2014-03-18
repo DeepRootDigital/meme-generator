@@ -14,22 +14,29 @@
 </head>
 <body>
   <!--[if lt IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="header-container">
-      <img src="images/logo.png" alt="Memegen Logo">
-    </div>
-    <div class="content-container">
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div class="header-container">
+    <img src="images/logo.png" alt="Memegen Logo">
+  </div>
+  <div class="content-container">
     <div class="sign-upin">
-    <form action="" method="POST">
-      <input type="text" name="username" id="username" placeholder="username">
-      <input type="password" name="password" id="password" placeholder="password">
-      <input type="submit" id="signup-register">
-    </form>
+      <h2>Sign Up</h2>
+      <form action="" method="POST">
+        <input type="text" name="username" id="username" class="form-control" placeholder="username">
+        <input type="password" name="password" id="password" class="form-control" placeholder="password">
+        <input type="submit" id="signup-register">
+      </form>
+      <div class="error-box">
+      </div>
+      <div class="already">
+        <p>Already have an account?</p>
+        <a href="/login">Sign in now</a>
+      </div>
     </div>
-    </div>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
-    <script src="javascripts/signupin.js"></script>
-  </body>
-  </html>
+  </div>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+  <script src="javascripts/signupin.js"></script>
+</body>
+</html>

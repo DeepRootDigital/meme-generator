@@ -20,6 +20,8 @@ $(document).ready(function(){
 		.done(function(response){
 			// Analyze response message from server
 			if (response.msg === '') {
+        var hashname = CryptoJS.SHA3(username).toString();
+        document.cookie = "id="+hashname;
 				window.location = "/";
 			} else {
             	// Throw error if there is one
@@ -53,18 +55,24 @@ $(document).ready(function(){
 		event.preventDefault();
 		var userName = $('#username-signin').val();
 		var password = $('#password').val();
+    $('#username-signin').removeClass('invalid');
+    $('#password').removeClass('invalid');
 		$.getJSON( '/userlist', function( data ) {
 			var arrayPosition = data.map(function(arrayItem) { return arrayItem.username; }).indexOf(userName);
 			var thisUserObject = data[arrayPosition];
 			if (thisUserObject) {
 				var hashpw = CryptoJS.SHA3(password).toString();
 				if (thisUserObject.password == hashpw) {
+          var hashname = CryptoJS.SHA3(userName).toString();
+          document.cookie = "id="+hashname;
 					window.location = "/";
 				} else {
-					alert('Password is incorrect.');
+					$('.error-box').html('<p>Password does not match the username.</p>');
+          $('#password').addClass('invalid');
 				}
 			} else {
-				alert('Username is not in our database.');
+        $('.error-box').html('<p>Username does not exist.</p>');
+        $('#username-signin').addClass('invalid');
 			}
 		});
 	});

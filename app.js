@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -39,7 +38,8 @@ if ('development' == app.get('env')) {
 
 /* Define all the pages */
 
-app.get('/', function(req, res) { res.render('index.html'); });
+app.get('/', function(req, res) { res.render('frontpage.html'); });
+app.get('/create', function(req, res) { res.render('creatememe.html'); });
 app.get('/signup', function(req, res) { res.render('signup.html'); });
 app.get('/login', function(req, res) { res.render('login.html'); });
 app.get('/bg-upload', function(req, res) { res.render('bg-upload.html'); });

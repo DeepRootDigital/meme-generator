@@ -3,10 +3,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		var username = $('#username').val();
 		var password = $('#password').val();
-		console.log(password);
 		password = CryptoJS.SHA3(password).toString();
-		console.log(username);
-		console.log(password);
 		var userdata = {
 			'username' : username,
 			'password' : password
@@ -20,9 +17,9 @@ $(document).ready(function(){
 		.done(function(response){
 			// Analyze response message from server
 			if (response.msg === '') {
-        var hashname = CryptoJS.SHA3(username).toString();
+        var hashname = username;
         document.cookie = "id="+hashname;
-				window.location = "/";
+				window.location = "/create";
 			} else {
             	// Throw error if there is one
             	alert('Error: ' + response.msg);
@@ -63,9 +60,9 @@ $(document).ready(function(){
 			if (thisUserObject) {
 				var hashpw = CryptoJS.SHA3(password).toString();
 				if (thisUserObject.password == hashpw) {
-          var hashname = CryptoJS.SHA3(userName).toString();
+          var hashname = userName;
           document.cookie = "id="+hashname;
-					window.location = "/";
+					window.location = "/create";
 				} else {
 					$('.error-box').html('<p>Password does not match the username.</p>');
           $('#password').addClass('invalid');

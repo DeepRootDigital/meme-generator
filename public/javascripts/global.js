@@ -5,6 +5,7 @@ $(document).ready(function() {
 	populateTable();
 	listImages();
 	listIcons();
+	loggedinUser();
 
 	// Click trigger to save a meme
 	$('#savememe').on('click', saveMeme);
@@ -18,6 +19,12 @@ $(document).ready(function() {
 	$('#canvas-resize').on('click', resizeCanvas);
 	// Update bglist
 	$('#bg-iframe').on('mouseout', listImages);
+
+	$('#logout').click(function(event){
+		event.preventDefault();
+		document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		window.location = "/login";
+	});
 
 });
 
@@ -170,4 +177,21 @@ function resizeCanvas(event) {
 		}
 	});
 	canvas.loadFromJSON(jsonstring,canvas.renderAll.bind(canvas));
+}
+
+function loggedinUser() {
+	var loggeduser = getCookie("id");
+	$('#cookied-name').text(loggeduser);
+}
+
+function getCookie(cname)
+{
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i=0; i<ca.length; i++) 
+  {
+  var c = ca[i].trim();
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+return "";
 }

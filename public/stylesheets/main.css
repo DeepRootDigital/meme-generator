@@ -133,3 +133,72 @@ input[type="file"] {
 	border:0;
 	padding:0;
 }
+
+/* Sign up in */
+
+.sign-upin {
+	width: 50%;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+  margin-top:50px;
+}
+
+.sign-upin h2 {
+  font-size:35px;
+}
+
+.sign-upin .form-control {
+  width:80%;
+  clear:both;
+  height:60px;
+  margin-bottom:25px;
+  font-size:30px;
+}
+
+.sign-upin .form-control.invalid {
+  border:1px solid red;
+}
+
+.sign-upin input[type="submit"] {
+  float:left;
+  clear:both;
+  background:0;
+  border:0;
+  border:1px solid #ccc;
+  color:#555;
+  border-radius:5px;
+  padding:10px;
+  font-size:30px;
+}
+
+.sign-upin input[type="submit"]:hover {
+  background-color:#555;
+  color:#fff;
+}
+
+.sign-upin .error-box {
+  float:left;
+  width:90%;
+  margin-left:-5%;
+  margin-top:20px;
+  text-align:center;
+  color:red;
+  font-size:20px;
+}
+
+.sign-upin .already {
+  float:left;
+  width:90%;
+  margin-top:20px;
+  font-size:18px;
+}
+
+.sign-upin .already p {
+  margin:0;
+}
+
+.sign-upin .already a {
+  margin:0;
+  color:#343533;
+}

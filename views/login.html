@@ -20,13 +20,20 @@
       <img src="images/logo.png" alt="Memegen Logo">
     </div>
     <div class="content-container">
-    <div class="sign-upin">
-    <form action="" method="POST">
-      <input type="text" name="username" id="username-signin" placeholder="username">
-      <input type="password" name="password" id="password" placeholder="password">
-      <input type="submit" id="signin-user">
-    </form>
-    </div>
+      <div class="sign-upin">
+        <h2>Sign In</h2>
+        <form action="" method="POST">
+          <input type="text" name="username" id="username-signin" class="form-control" placeholder="username">
+          <input type="password" name="password" id="password" class="form-control" placeholder="password">
+          <input type="submit" id="signin-user">
+        </form>
+        <div class="error-box">
+        </div>
+        <div class="already">
+          <p>Don't have an account?</p>
+          <a href="/signup">Sign up now</a>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>

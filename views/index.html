@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Meme App</title>
+  <meta name="description" content="BMS Meme Generator in app form.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-container">
+      <img src="images/logo.png" alt="Memegen Logo">
+    </div>
+    <div class="content-container">
+      <div class="options-container">
+        <div class="row">
+          <div class="meme-load-container options-container-single">
+            <button id="meme-loader">Load Meme</button>
+            <div class="meme-loader options-panel">
+              <select class="form-control" id="memeLoadSelector">
+              </select>
+              <button id="memeLoad">Load</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="resize-container options-container-single">
+            <input type="text" id="canvas-width" placeholder="Width" class="form-control">
+            <input type="text" id="canvas-height" placeholder="Height" class="form-control">
+            <button id="canvas-resize">Resize</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bg-options options-container-single">
+            <button id="bg-solid">Color BG</button>
+            <div class="bg-solid-options options-panel">
+              <input value="ffffff" class="color" type="text" id="background-color">
+              <button id="bg-solid-update">Choose Color</button>
+            </div>
+            <button id="bg-picture">Picture BG</button>
+            <div class="bg-picture-options options-panel">
+              <iframe src="/bg-upload" width="100%" height="40px" id="bg-iframe" seamless></iframe>
+              <select id="background-choice" class="form-control">
+              </select>
+              <button id="background-choice-submit">Choose bg</button>
+            </div>
+            <button id="clear-bg">Clear BG</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="newtext-options options-container-single">
+            <button class="addtextarea">New Text</button>
+            <div class="addtext-options options-panel">
+              <textarea class="form-control" id="addtext-text"></textarea>
+              <input id="addtext-color" class="color form-control" type="text" value="ffffff">
+              <input id="addtext-fontsize" class="form-control" type="text" value="40">
+              <button id="addtext-add">Add Text</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="icon-options-container options-container-single">
+            <button class="addimage">New Image</button>
+            <div class="addimage-options options-panel">
+              <iframe src="/icon-upload" width="100%" height="40px" id="icon-iframe" seamless></iframe>
+              <select id="icon-choice" class="form-control">
+              </select>
+              <button id="icon-choice-submit">Choose icon</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="save-meme options-container-single">
+            <input id="memename" class="form-control" type="text" placeholder="Meme Name">
+            <button id="savememe">Save Meme</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class='download-meme options-container-single'>
+          <button id="downloadmeme">Download Meme</button>
+          </div>
+        </div>
+      </div>
+      <div class="mememaker-left">
+        <canvas id="c" width="630" height="651"></canvas>
+      </div>
+    </div>
+    <script src="javascripts/fabric.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascripts/dropzone.js"></script>
+    <script src="javascripts/function.js"></script>
+    <script src="javascripts/global.js"></script>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+  </body>
+  </html>

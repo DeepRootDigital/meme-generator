@@ -100,6 +100,32 @@ textarea.form-control {
 	height:80%;
 	margin-top:10px;
 	width:auto;
+  float:left;
+}
+
+.main-menu {
+  width:50%;
+  float:right;
+}
+
+.main-menu p {
+  float:left;
+}
+
+.main-menu-container {
+  float:left;
+  margin-left:20%;
+}
+
+.main-menu-container ul {
+  list-style-type:none;
+  padding:0;
+  margin:0;
+}
+
+.main-menu-container li {
+  padding:6px 10px;
+  border: 1px solid #000;
 }
 
 .content-container {

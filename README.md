@@ -7,7 +7,6 @@ To setup the environment, you will need the following:
 Dependencies:
 
 Nodejs
-Expressjs
 Mongodb
 
 

@@ -25,7 +25,7 @@
         <div class="main-menu-container">
           <ul>
             <a href="/home"><li>User Panel</li></a>
-            <a href="/choose"><li>Create Meme</li></a>
+            <a href="/create"><li>Create Meme</li></a>
             <a href="" id="logout"><li>Logout</li></a>
           </ul>
         </div>
@@ -33,13 +33,16 @@
     </div>
     <div class="content-container">
       <div class="row">
-        <a href="/choose"><div class="home-icon">Create Meme</div></a>
-        <a href="/manage"><div class="home-icon">Manage Memes</div></a>
-        <a href="/templatecenter"><div class="home-icon">Template Center</div></a>
-      </div>
-      <div class="row">
-        <a href="/learn"><div class="home-icon-wide">Learning Center</div></a>
-        <a href="/support"><div class="home-icon-wide">Support Center</div></a>
+        <a href="/create"><div class="home-icon-wide">Start from Scratch</div></a>
+        <div class="home-icon-wide" id="choose-preset">
+          Choose Preset
+          <div class="preset-menu">
+            <p>Social Presets</p>
+              <button id="facebook-preset">Facebook</button>
+              <button id="twitter-preset">Twitter</button>
+            <p>Saved Templates</p>
+          </div>
+        </div>
       </div>
     </div>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>

@@ -38,7 +38,11 @@ $(document).ready(function(){
 	$('#username').on('keyup',function(){
 		// Set validity and get username inputted
 		var valid = 1;
+		var notEmpty = 1;
 		var username = $('#username').val();
+		if (username == '') {
+			notEmpty = 0;
+		}
 		$.getJSON( '/userlist', function( data ) {
 			$.each(data, function(){
 				if (username == this.username) {
@@ -52,6 +56,12 @@ $(document).ready(function(){
 				$('#username').addClass('invalid');
 				$('#username').removeClass('valid');
 				$('.error-box').html('<p>That username is in use.</p>');
+			} else if (notEmpty == 0) {
+				/* Give 'fill out' message and put red outline */
+				$('#signup-register').prop("disabled", true);
+				$('#username').addClass('invalid');
+				$('#username').removeClass('valid');
+				$('.error-box').html('<p>Please enter a username.</p>');
 			} else {
 				/* Get rid of error messages if they are there */
 				$('#signup-register').prop("disabled", false);

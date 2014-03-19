@@ -1,4 +1,4 @@
-<h1>This is the official repository for the Business on Market Street Meme Generator.</h1>
+<h1>Business on Market Street Meme Generator</h1>
 
 Project leader: Paul McMahon
 

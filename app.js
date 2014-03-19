@@ -38,14 +38,23 @@ if ('development' == app.get('env')) {
 
 /* Define all the pages */
 
+// Pre login
 app.get('/', function(req, res) { res.render('frontpage.html'); });
-app.get('/home', function(req, res) { res.render('home.html'); });
-app.get('/create', function(req, res) { res.render('creatememe.html'); });
 app.get('/signup', function(req, res) { res.render('signup.html'); });
 app.get('/login', function(req, res) { res.render('login.html'); });
+
+// Post login
+app.get('/home', function(req, res) { res.render('home.html'); });
+app.get('/create', function(req, res) { res.render('creatememe.html'); });
+app.get('/choose', function(req, res) { res.render('choose.html'); });
+app.get('/manage', function(req, res) { res.render('managememe.html'); });
+app.get('/templatecenter', function(req, res) { res.render('templatecenter.html'); });
+app.get('/learn', function(req, res) { res.render('learn.html'); });
+app.get('/support', function(req, res) { res.render('support.html'); });
+
+// Misc Assets
 app.get('/bg-upload', function(req, res) { res.render('bg-upload.html'); });
 app.get('/icon-upload', function(req, res) { res.render('icon-upload.html'); });
-
 
 /* End Page Definitions */
 

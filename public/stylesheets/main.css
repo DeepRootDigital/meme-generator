@@ -22,9 +22,9 @@ button {
   vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -126,6 +126,10 @@ input[type="file"] {
   border:1px solid #000;
   border-radius:5px;
   text-align:center;
+  font-size: 30px;
+  color: rgb(48, 115, 236);
+  padding: 75px 5% 0 5%;
+  line-height: 30px;
 }
 
 .home-icon-wide {
@@ -136,4 +140,22 @@ input[type="file"] {
   border:1px solid #000;
   border-radius:5px;
   text-align:center;
+  font-size: 30px;
+  color: rgb(48, 115, 236);
+  padding: 65px 5% 0 5%;
+  line-height: 30px;
+  cursor:pointer;
+}
+
+.preset-menu {
+  width: 30%;
+  position: absolute;
+  margin-left: -5.1%;
+  margin-top: 104px;
+  height:0;
+  overflow:hidden;
+}
+
+.preset-menu p {
+  float:left;
 }

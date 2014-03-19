@@ -24,6 +24,11 @@ $(document).ready(function() {
 		}
 	});
 
+	// Functionality for choosing preset box
+	$('#choose-preset').click(function(){
+		$('.preset-menu').animate({'height':'400px'},300);
+	});
+
 });
 
 function loggedinUser() {

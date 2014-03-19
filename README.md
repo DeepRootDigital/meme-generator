@@ -1,4 +1,4 @@
-<h1>Business on Market Street Meme Generator</h1>
+<h1>Business on Market St Meme Generator</h1>
 
 Project leader: Paul McMahon
 

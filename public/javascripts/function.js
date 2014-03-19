@@ -42,10 +42,12 @@ $(document).ready(function(){
 		var textcontent = document.getElementById('addtext-text').value;
 		var textcolor = document.getElementById('addtext-color').value;
 		var textsize = parseInt(document.getElementById('addtext-fontsize').value);
+		var textlh = parseInt(textsize * 1.2);
 		var newtext = new fabric.IText(textcontent, {
 			fontFamily: 'Helvetica',
 			fontSize: textsize,
 			fill: textcolor,
+			lineHeight: 1,
 			id: idnum
 		});
 		canvas.add(newtext);
@@ -101,7 +103,9 @@ $(document).ready(function(){
 	});
 	// Open new tab with image to be saved
 	$('#downloadmeme').click(function(){
+		console.log(canvas);
 		var dataURL = canvas.toDataURL({format: 'jpeg'});
+		console.log(dataURL);
 		window.open(dataURL);
 	});
 	// Delete objects if they are dragged off to the left
@@ -274,6 +278,8 @@ function resizeCanvas(event) {
 	$('.upper-canvas').attr('height',height+'px');
 	$('.upper-canvas').css('width',width+'px');
 	$('.upper-canvas').css('height',height+'px');
+	canvas.width = width;
+	canvas.height = height;
 	var jsonstring = canvas.toJSON();
 	$.each(jsonstring, function() {
 		if (this.height) {

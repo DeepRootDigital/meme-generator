@@ -29,7 +29,7 @@ To setup the environment, you will need the following:
 
 <h2>Editing:</h2>
 
-<p>If you wish to make edits on this repository, please use <a href="http://scottchacon.com/2011/08/31/github-flow.html">github flow</a>.</p>
+<p>If you wish to make edits on this repository, please use <a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank">github flow</a>.</p>
 <p>If you not entirely sure how to use github flow, contact me (paul@businessonmarketst.com).</p>
 <p>Basic idea</p>
 <ul>

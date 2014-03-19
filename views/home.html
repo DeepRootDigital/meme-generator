@@ -20,26 +20,30 @@
       <a href="" id="logolink">
         <img src="images/logo.png" alt="Memegen Logo">
       </a>
-    </div>
-    <div class="content-container">
-      <div class="sign-upin">
-        <h2>Sign In</h2>
-        <form action="" method="POST">
-          <input type="text" name="username" id="username-signin" class="form-control" placeholder="username">
-          <input type="password" name="password" id="password" class="form-control" placeholder="password">
-          <input type="submit" id="signin-user">
-        </form>
-        <div class="error-box">
-        </div>
-        <div class="already">
-          <p>Don't have an account?</p>
-          <a href="/signup">Sign up now</a>
+      <div class="main-menu">
+        <p>Welcome <span id="cookied-name"></span>!</p>
+        <div class="main-menu-container">
+          <ul>
+            <a href="/home"><li>User Panel</li></a>
+            <a href="/create"><li>Create Meme</li></a>
+            <a href="" id="logout"><li>Logout</li></a>
+          </ul>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <div class="content-container">
+      <div class="row">
+        <a href="/create"><div class="home-icon">Create Meme</div></a>
+        <a href="/manage"><div class="home-icon">Manage Memes</div></a>
+        <a href="/templatecenter"><div class="home-icon">Template Center</div></a>
+      </div>
+      <div class="row">
+        <a href="/learn"><div class="home-icon-wide">Learning Center</div></a>
+        <a href="/support"><div class="home-icon-wide">Support Center</div></a>
+      </div>
+    </div>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
-    <script src="javascripts/signupin.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="javascripts/global.js"></script>
   </body>
   </html>

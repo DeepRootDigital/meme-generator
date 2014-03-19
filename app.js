@@ -39,6 +39,7 @@ if ('development' == app.get('env')) {
 /* Define all the pages */
 
 app.get('/', function(req, res) { res.render('frontpage.html'); });
+app.get('/home', function(req, res) { res.render('home.html'); });
 app.get('/create', function(req, res) { res.render('creatememe.html'); });
 app.get('/signup', function(req, res) { res.render('signup.html'); });
 app.get('/login', function(req, res) { res.render('login.html'); });

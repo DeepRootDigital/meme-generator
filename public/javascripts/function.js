@@ -55,6 +55,50 @@ $(document).ready(function(){
 	$('.addimage').click(function(){
 		$('.addimage-options').animate({'height':'100px'},300);
 	});
+	// Slide open the shape panel
+	$('.addshape').click(function(){
+		$('.addshape-options').animate({'height':'150px'},300);
+	});
+	// Add shape-box
+	$('#addshape-box').click(function(){
+		var bgcolor = $('#addshape-color').val();
+		var opa = $('#addshape-opacity').val();
+		if (opa == '') {
+			opa = 1;
+		}
+		opa = parseFloat(opa);
+		if (bgcolor == '') {
+			bgcolor = '#ffffff';
+		}
+		var newShape = new fabric.Rect({
+			width: 100,
+			height: 100,
+			top: 100,
+			left: 100,
+			fill: bgcolor,
+			opacity: opa
+		});
+		canvas.add(newShape);
+	});
+	// Add shape-line
+	$('#addshape-line').click(function(){
+		var bgcolor = $('#addshape-color').val();
+		var lw = $('#addshape-lw').val();
+		if (lw == '0' || lw == '') {
+			lw = 1;
+		}
+		lw = parseInt(lw);
+		if (bgcolor == '') {
+			bgcolor = '#ffffff';
+		}
+		var newShape = new fabric.Line([50,50,150,150], {
+			top: 100,
+			left: 100,
+			stroke: bgcolor,
+			strokeWidth: lw
+		});
+		canvas.add(newShape);
+	});
 	// Open new tab with image to be saved
 	$('#downloadmeme').click(function(){
 		var dataURL = canvas.toDataURL({format: 'jpeg'});

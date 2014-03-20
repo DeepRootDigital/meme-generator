@@ -16,7 +16,7 @@ $(document).ready(function(){
 	});
 	// Clear the background of the meme  NOT WORKING YET
 	$('#clear-bg').click(function(){
-		canvas.backgroundColor = 0;
+		canvas.backgroundImage = 0;
 		canvas.setBackgroundColor('rgba(0,0,0,0)', canvas.renderAll.bind(canvas));
 	});
 	// Open solid background panel and close picture background options
@@ -101,11 +101,14 @@ $(document).ready(function(){
 		});
 		canvas.add(newShape);
 	});
+	// Slide open the download options
+	$('#downloadmeme-show').click(function(){
+		$('.download-options').animate({'height':'100px'},300);
+	});
 	// Open new tab with image to be saved
-	$('#downloadmeme').click(function(){
-		console.log(canvas);
-		var dataURL = canvas.toDataURL({format: 'jpeg'});
-		console.log(dataURL);
+	$('.downloadmeme').click(function(){
+		var formattype = $(this).attr('id');
+		var dataURL = canvas.toDataURL({format: formattype});
 		window.open(dataURL);
 	});
 	// Delete objects if they are dragged off to the left

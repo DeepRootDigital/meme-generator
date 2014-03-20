@@ -136,6 +136,8 @@ $(document).ready(function(){
 	$('#canvas-resize').on('click', resizeCanvas);
 	// Update bglist
 	$('#bg-iframe').on('mouseout', listImages);
+	// Update iconlist
+	$('#icon-iframe').on('mouseout', listIcons);
 
 });
 

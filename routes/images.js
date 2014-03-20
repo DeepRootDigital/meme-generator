@@ -27,7 +27,6 @@ exports.iconList = function(db) {
  exports.uploadFile = function(db) {
    return function(req, res) {
      var oldPath = req.files.newImg.path;
-     console.log(oldPath);
      fs.readFile(oldPath, function (err, data) {
        var fileName = req.files.newImg.originalFilename;
        var fileObj = {
@@ -45,7 +44,6 @@ exports.iconList = function(db) {
  exports.uploadIcon = function(db) {
    return function(req, res) {
      var oldPath = req.files.newIcon.path;
-     console.log(oldPath);
      fs.readFile(oldPath, function (err, data) {
        var fileName = req.files.newIcon.originalFilename;
        var fileObj = {

@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	// Determine the logged in user and display their username
 	loggedinUser();
+	ifAdmin();
 
 	// Logout function
 	$('#logout').click(function(event){
@@ -34,6 +35,21 @@ $(document).ready(function() {
 function loggedinUser() {
 	var loggeduser = getCookie("id");
 	$('#cookied-name').text(loggeduser);
+}
+
+function ifAdmin() {
+	var userlvl;
+	var loggeduser = getCookie("id");
+	$.getJSON( '/userlist', function( data ) {
+    $.each(data, function(){
+      if (loggeduser == this.username) {
+        userlvl = this.userlevel;
+      }
+    });
+    if (userlvl == "Admin") {
+    	$('.main-menu-container > ul').prepend('<a href="/admin"><li>Admin Panel</li></a>');
+    }
+  });
 }
 
 /* Get the cookie info */

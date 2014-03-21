@@ -7,26 +7,57 @@ $(document).ready(function(){
     // Grab the values from the form
     var usern = $('#username-change').val();
     var userlvl = $('#userlevel-choice').val();
-    // Create the object to be inserted into the database
-    var userdata = {
-      'username' : usern,
-      'userlevel' : userlvl
-    };
-    // Ajax request to insert into the database
-    $.ajax({
-      type: 'POST',
-      data: userdata,
-      url: '/updateuserlevel',
-      dataType: 'JSON'
-    })
-    .done(function(response){
-      // Analyze response message from server
-      if (response.msg === '') {
-        window.location = "/admin";
-      } else {
-        // Throw error if there is one
-        alert('Error: ' + response.msg);
-      }
+    $.getJSON( '/userlist', function( data ) {
+      var oldlvl;
+      $.each(data, function(){
+        if (this.username == usern) {
+          oldlvl = this.userlevel;
+        }
+      });
+      // Create the object to be inserted into the database
+      var userdata = {
+        'username' : usern,
+        'userlevel' : userlvl
+      };
+      // Ajax request to insert into the database
+      $.ajax({
+        type: 'POST',
+        data: userdata,
+        url: '/updateuserlevel',
+        dataType: 'JSON'
+      })
+      .done(function(response){
+        // Analyze response message from server
+        if (response.msg === '') {
+          var d = new Date();
+          userdata = {
+            'username' : usern,
+            'new level' : userlvl,
+            'old level' : oldlvl
+          }
+          var adminlog = {
+            'username': getCookie("id"),
+            'action': "Change Userlevel",
+            'actionon': userdata,
+            'date': d.toLocaleDateString(),
+            'time': d.toLocaleTimeString()
+          }
+          $.ajax({
+            type: 'POST',
+            data: adminlog,
+            url: '/adminlog',
+            dataType: 'JSON'
+          })
+          .done(function(response){
+            if (response.msg === '') {
+              window.location = "/admin";
+            }
+          });
+        } else {
+          // Throw error if there is one
+          alert('Error: ' + response.msg);
+        }
+      });
     });
   });
 
@@ -70,10 +101,13 @@ function deleteMeme() {
   .done(function(response){
     // Analyze response message from server
     if (response.msg === '') {
+      var d = new Date();
       var adminlog = {
         'username': getCookie("id"),
         'action': "Delete Meme",
-        'actionon': memeToDelete
+        'actionon': memeToDelete,
+        'date': d.toLocaleDateString(),
+        'time': d.toLocaleTimeString()
       }
       $.ajax({
         type: 'POST',

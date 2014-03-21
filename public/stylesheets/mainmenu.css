@@ -17,6 +17,7 @@
 .main-menu {
   width:50%;
   float:right;
+  height:100%;
 }
 
 .main-menu p {
@@ -24,7 +25,7 @@
 }
 
 .main-menu-container {
-  float:left;
+  position:absolute;
   margin-left:20%;
 }
 

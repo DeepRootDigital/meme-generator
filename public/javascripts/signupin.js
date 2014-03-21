@@ -12,7 +12,8 @@ $(document).ready(function(){
 		var userdata = {
 			'username' : username,
 			'email' : email,
-			'password' : password
+			'password' : password,
+			'userlevel' : "one"
 		};
 		// Ajax request to insert into the database
 		$.ajax({

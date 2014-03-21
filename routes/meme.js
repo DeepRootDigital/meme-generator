@@ -31,7 +31,7 @@ exports.memelist = function(db) {
 
  exports.deletememe = function(db) {
    return function(req, res) {
-     var memeToDelete = req.params.id;
+     var memeToDelete = req.body.id;
      db.collection('memelist').removeById(memeToDelete, function(err, result) {
        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
      });

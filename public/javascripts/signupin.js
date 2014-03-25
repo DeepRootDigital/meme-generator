@@ -2,41 +2,61 @@ $(document).ready(function(){
 	// Script to register a new user
 	$('#signup-register').click(function(event){
 		event.preventDefault();
+		var uservalid = 1;
+		var emailvalid = 1;
 		// Grab the values from the form
 		var username = $('#username').val();
 		var email = $('#email').val();
 		var password = $('#password').val();
-		// Hash the password for security
-		password = CryptoJS.SHA3(password).toString();
-		// Create the object to be inserted into the database
-		var userdata = {
-			'username' : username,
-			'email' : email,
-			'password' : password,
-			'userlevel' : "one"
-		};
-		// Ajax request to insert into the database
-		$.ajax({
-			type: 'POST',
-			data: userdata,
-			url: '/register',
-			dataType: 'JSON'
-		})
-		.done(function(response){
-			// Analyze response message from server
-			if (response.msg === '') {
-				// If successful, set cookie and redirect
-				var hashname = username;
-				document.cookie = "id="+hashname;
-				window.location = "/home";
+		$.getJSON( '/userlist', function( data ) {
+			$.each(data, function(){
+				if (username == this.username) {
+					uservalid = 0;
+				}
+				if (email == this.email) {
+					emailvalid = 0;
+				}
+			});
+			if (uservalid == 0) {
+				alert('That username is in use.');
 			} else {
-            	// Throw error if there is one
-            	alert('Error: ' + response.msg);
-            }
-          });
+				if (emailvalid == 0) {
+					alert('That email is in use.');
+				} else {
+					// Hash the password for security
+					password = CryptoJS.SHA3(password).toString();
+				  // Create the object to be inserted into the database
+				  var userdata = {
+				  	'username' : username,
+				  	'email' : email,
+				  	'password' : password,
+				  	'userlevel' : "one"
+				  };
+					// Ajax request to insert into the database
+					$.ajax({
+						type: 'POST',
+						data: userdata,
+						url: '/register',
+						dataType: 'JSON'
+					})
+					.done(function(response){
+						// Analyze response message from server
+						if (response.msg === '') {
+							// If successful, set cookie and redirect
+							var hashname = username;
+							document.cookie = "id="+hashname;
+							window.location = "/home";
+						} else {
+	          	// Throw error if there is one
+	          	alert('Error: ' + response.msg);
+	          }
+	        });
+				}			
+			}
+		});
 	});
 
-	$('#username').on('keyup',function(){
+$('#username').on('keyup',function(){
 		// Set validity and get username inputted
 		var valid = 1;
 		var notEmpty = 1;
@@ -73,7 +93,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#email').on('keyup',function(){
+$('#email').on('keyup',function(){
 		// Set validity and get username inputted
 		var valid = 1;
 		var avail = 1;
@@ -110,7 +130,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#repassword').on('keyup',function(){
+$('#repassword').on('keyup',function(){
 		// Set validity and get username inputted
 		var valid = 0;
 		var pw = $('#password').val();
@@ -134,8 +154,8 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#signin-user').click(function(event){
-		event.preventDefault();
+$('#signin-user').click(function(event){
+	event.preventDefault();
 		// Get the Username and password entered
 		var userName = $('#username-signin').val();
 		var password = $('#password').val();

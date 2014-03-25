@@ -5,14 +5,18 @@
 /* General CSS */
 
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration:none;
 }
 
 button {
-	float:left;
-	width:50%;
+  float:left;
+  width:50%;
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
@@ -34,87 +38,93 @@ button {
 }
 
 button:hover {
-	color: #333;
-	background-color: #ebebeb;
-	border-color:#adadad;
-	outline: 0;
-	background-image: none;
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  color: #333;
+  background-color: #ebebeb;
+  border-color:#adadad;
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 .options-panel {
-	height:0px;
-	overflow:hidden;
-	width:100%;
-	float:left;
+  height:0px;
+  overflow:hidden;
+  width:100%;
+  float:left;
 }
 
 .row {
-	width:100%;
-	margin:5px 0px;
+  width:100%;
+  margin:5px 0px;
 }
 
 .options-container .row {
-	margin: 5px 0px;
+  margin: 5px 0px;
 }
 
 .form-control {
-	display: block;
-	float:left;
-	width: 50%;
-	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  display: block;
+  float:left;
+  width: 50%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
 textarea.form-control {
-	width:100%;
-	height:60px;
+  width:100%;
+  height:60px;
 }
 
 /* Meme Maker Page */
 
 .content-container {
-	width:100%;
-	min-width:1000px;
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-	float:left;
+  width:100%;
+  min-width:1000px;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  float:left;
 }
 
 .mememaker-left {
-	width:75%;
-	float:left;
+  width:75%;
+  float:left;
+  padding:.5%;
 }
 
 .options-container {
-	width:25%;
-	float:left;
-	padding:10px;
+  width:25%;
+  float:left;
+  padding:10px;
+  border: 1px solid;
 }
 
 .options-container-single {
-	float: left;
-	padding: 4%;
-	border: 1px solid #adadad;
-	border-radius: 5px;
-	width:100%;
+  float: left;
+  padding: 4%;
+  border: 1px solid #adadad;
+  border-radius: 5px;
+  width:100%;
 }
 
 input[type="file"] {
-	border:0;
-	padding:0;
+  border:0;
+  padding:0;
+}
+
+.mememaker-left > div {
+  border:1px solid #adadad;
 }
 
 /* Home Designs */
@@ -159,4 +169,8 @@ input[type="file"] {
 
 .preset-menu p {
   float:left;
+}
+
+.active-container > div {
+  display:none;
 }

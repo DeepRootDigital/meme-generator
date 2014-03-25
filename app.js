@@ -16,12 +16,12 @@ var fs = require('fs');
 // Database
 
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/memeappfinal", {native_parser:true});
+// var db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
+var db = mongo.db("mongodb://localhost:27017/memeappdev", {native_parser:true});
 
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.use(express.favicon());
@@ -50,10 +50,10 @@ app.get('/home', function(req, res) { res.render('home.html'); });
 app.get('/create', function(req, res) { res.render('creatememe.html'); });
 app.get('/createtemplate', function(req, res) { res.render('templatememe.html'); });
 app.get('/choose', function(req, res) { res.render('choose.html'); });
-app.get('/manage', function(req, res) { res.render('managememe.html'); });
-app.get('/templatecenter', function(req, res) { res.render('templatecenter.html'); });
-app.get('/learn', function(req, res) { res.render('learn.html'); });
-app.get('/support', function(req, res) { res.render('support.html'); });
+app.get('/manage', function(req, res) { res.render('user/managememe.html'); });
+app.get('/templatecenter', function(req, res) { res.render('user/templatecenter.html'); });
+app.get('/learn', function(req, res) { res.render('user/learn.html'); });
+app.get('/support', function(req, res) { res.render('user/support.html'); });
 
 // Misc Assets
 app.get('/bg-upload', function(req, res) { res.render('bg-upload.html'); });
@@ -67,11 +67,14 @@ app.get('/admin', function(req, res) { res.render('admin.html'); });
 
 /* Define RESTful actions */
 
+// GET
 app.get('/userlist', user.list(db));
 app.get('/memelist', meme.memelist(db));
 app.get('/bglist', bg.bglist(db));
 app.get('/imagelist', images.imageList(db));
 app.get('/iconlist', images.iconList(db));
+
+// POST
 app.post('/addmeme', meme.addmeme(db));
 app.post('/bglist', bg.addbg(db));
 app.post('/uploadimg', images.uploadFile(db));
@@ -86,7 +89,10 @@ app.post('/updateuserlevel', admin.changeuser(db));
 app.post('/adminlog', admin.adminlog(db));
 
 /* End RESTful actions */
-
+var port = process.env.PORT || 8080;
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + port);
 });
+
+//
+app.listen(port);

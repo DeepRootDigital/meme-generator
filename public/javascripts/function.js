@@ -17,7 +17,7 @@ $(document).ready(function(){
 			$('.bg-picture-options').animate({'height':'100px'},300);
 		});
 	});
-	// Clear the background of the meme  NOT WORKING YET
+	// Clear the background of the meme
 	$('#clear-bg').click(function(){
 		canvas.backgroundImage = 0;
 		canvas.setBackgroundColor('rgba(0,0,0,0)', canvas.renderAll.bind(canvas));
@@ -57,8 +57,8 @@ $(document).ready(function(){
 		window.open(dataURL);
 	});
 	// Delete objects if they are dragged off to the left
-	canvas.on('mouse:up', function(e){
-		activeObject = e.target;
+	canvas.on('object:selected', function(e){
+		activeObject = canvas.getActiveObject();
 		if ( activeObject ) {
 			if ( activeObject.get('left') > 630 ) {
 				canvas.remove(activeObject);
@@ -152,10 +152,13 @@ function saveMeme(event){
 		var jsonstring = JSON.stringify(canvas);
 		// Get the name entered
 		var memename = $('#memename').val();
+    // Get the user that is saving
+    var usern = getCookie('id');
 		// Turn the data into an object to be submitted
 		var newMeme = {
 			'memename' : memename,
-			'json' : jsonstring
+			'json' : jsonstring,
+      'username' : usern
 		}
 		// Execute ajax request
 		$.ajax({
@@ -185,9 +188,11 @@ function populateTable() {
 		memeListData = data;
 		// For each of the memes generate the HTML
 		$.each(data, function(){
-			tableContent += '<option>';
-			tableContent += this.memename;
-			tableContent += '</option>';
+      if (this.username == getCookie('id')) {
+        tableContent += '<option>';
+        tableContent += this.memename;
+        tableContent += '</option>';
+      }
 		});
 		// Insert into the meme loading selector
 		$('#memeLoadSelector').html(tableContent);

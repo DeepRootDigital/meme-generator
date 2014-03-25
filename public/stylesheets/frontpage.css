@@ -80,6 +80,9 @@ body {
 	padding: 10px;
 	box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
 	transition: all 0.1s linear 0s;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
 }
 .login:active {
 	margin: -33px -2px 0 0;
@@ -107,14 +110,18 @@ body {
 	font-family: raleway;
 	font-weight: 300;
 }
-.box input[type=submit] {
+.box a.button {
 	display: block;
+	color:#000;
 	margin: 20px auto;
 	background-color: rgb(255, 226, 148);
 	border-radius: 5px;
 	border: 1px solid rgb(204, 204, 204);
 	padding: 10px;
 	letter-spacing: 2px;
+	width:20%;
+	min-width: 110px;
+	text-align: center;
 }
 .box p {
 	margin: 20px auto;

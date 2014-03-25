@@ -1,42 +1,180 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Meme App</title>
-  <meta name="description" content="BMS Meme Generator in app form.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Meme App</title>
+<meta name="description" content="BMS Meme Generator in app form.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-  <link rel="stylesheet" href="stylesheets/normalize.css">
-  <link rel="stylesheet" href="stylesheets/main.css">
+<link rel="stylesheet" href="stylesheets/normalize.css">
+<link rel="stylesheet" href="stylesheets/main.css">
+<link rel="stylesheet" href="stylesheets/frontpage.css" />
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,700,900,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,300,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <!--[if lt IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="header-container">
-      <a href="" id="logolink">
+<!--[if lt IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div id="test" class="header-container">
+    <div class="center">
+      <img class="mobile-nav-icon" src="images/mobile-nav-icon.png" alt="" />
+      <h1 class="title">Meme<span>GEN</span></h1>
+      <form>
+        <input class="login" type="submit" value="Login/Logout" />
+      </form>
+      <!--<a href="" id="logolink">
         <img src="images/logo.png" alt="Memegen Logo">
-      </a>
+      </a>-->
+      <div class="clear"></div>
     </div>
-    <div class="content-container">
-      <div class="top-area-left">
-        <h2>MemeGen</h2>
-        <p>This is an amazing app that does some really cool things when you do stuff with it whenever you have the time to do whatever you want to do with it at some given time.</p>
-        <a href="/signup"><div class="form-control">Sign Up Now</div></a>
-        <a href="/login"><div class="form-control">Login</div></a>
-      </div>
-      <div class="top-area-right">
-      </div>
-      <div class="top-area-right">
-      </div>
-      <div class="top-area-left">
+  </div>
+  <div class="content-container">
+    <div class="section-one">
+      <div class="center">
+        <div class="section-one-content-left box">
+          <h2>MemeGEN</h2>
+          <form>
+            <input type="submit" value="Sign Up" />
+            <input type="submit" value="Login" />
+          </form>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p>
+        </div>
+        <div class="section-one-content-right box">
+          
+        </div>
+        <div class="clear"></div>
       </div>
     </div>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="javascripts/global.js"></script>
-  </body>
-  </html>
+
+     <div class="information-features">
+      <div class="center">
+        <img class="rotate-me-one gear1" src="images/gear1.png" alt="" />
+        <img class="rotate-me-two gear2" src="images/gear2.png" alt="" />
+        <p>Information Features</p>
+      </div>
+    </div>
+
+    <div class="features-slider">
+      <div class="center">
+        <div id="outside">
+            <!-- prev/next links -->
+            <div class="center">
+                <span id="prev"></span>
+                <span id="next"></span>
+            </div>
+            <!-- slideshow -->
+            <div class="cycle-slideshow" 
+                data-cycle-fx=scrollHorz
+                data-cycle-timeout=0
+                data-cycle-prev="#prev"
+                data-cycle-next="#next"
+                data-cycle-slides="> div"
+                >
+                <div>
+                  <img src="images/feature-1.png" alt="" />
+                  <img src="images/feature-2.png" alt="" />
+                  <img src="images/feature-3.png" alt="" />
+                </div>
+                <div>
+                  <img src="images/feature-1.png" alt="" />
+                  <img src="images/feature-2.png" alt="" />
+                  <img src="images/feature-3.png" alt="" />
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-two">
+      <div class="center">
+       <div class="section-two-content-left box">
+          
+        </div>
+        <div class="section-two-content-right box">
+          <h2>Testimonials Meme</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div class="section-three">
+      <div class="center">
+       <div class="section-three-content-left box">
+          <h2>Sign Up Now</h2>
+          <form>
+            <input type="submit" value="Sign Up" />
+            <input type="submit" value="Login" />
+          </form>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p>
+        </div>
+        <div class="section-three-content-right box">
+          <h2>Different Sign Up Packages</h2>
+          <img class="package" src="images/package-box.png" alt="" />
+          <img class="package" src="images/package-box.png" alt="" />
+          <img class="package" src="images/package-box.png" alt="" />
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrap">
+      <div class="center">
+        <div class="footer-top">
+          <div class="footer-top-left">
+            <p class="footer-title">Support<img src="images/service.png"></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+          <div class="footer-top-right">
+            <p class="footer-title">About App<img src="images/about.png"></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="footer-bottom">
+          <p>stay up to date</p>
+          <form class="footer-form">
+            <input type="text" value="" placeholder="Sign up for our newsletter" />
+            <input type="submit" value="" />
+          </form>
+      </div>
+    </div>
+    <!--<div class="top-area-left">
+      <h2>MemeGen</h2>
+      <p>This is an amazing app that does some really cool things when you do stuff with it whenever you have the time to do whatever you want to do with it at some given time.</p>
+      <a href="/signup"><div class="form-control">Sign Up Now</div></a>
+      <a href="/login"><div class="form-control">Login</div></a>
+    </div>
+    <div class="top-area-right">
+    </div>
+    <div class="top-area-right">
+    </div>
+    <div class="top-area-left">
+    </div>-->
+  </div>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<script src="javascripts/global.js"></script>
+<script type="text/javascript">
+
+/*$(document).ready(function() {
+  $('.login').on('mousedown', function() {
+    $(this).css({'box-shadow' : 'none'});
+    $(this).css({'margin' : '-33px -2px 0 0'});
+  });
+  $('.login').on('mouseup', function() {
+    $(this).css({'box-shadow' : '2px 2px 1px 2px rgb(37, 52, 47);'});
+    $(this).css({'margin' : '-35px 0 0 0'});
+  });
+});*/
+
+</script>
+</body>
+</html>

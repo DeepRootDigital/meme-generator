@@ -1,7 +1,10 @@
 var textcount = 0;
 var imagecount = 0;
+var linecount = 0;
+var boxcount = 0;
 var canvas = new fabric.Canvas('c');
 var memeListData = [];
+var activeObject;
 
 $(document).ready(function(){
 	// Open memeloader area
@@ -35,24 +38,6 @@ $(document).ready(function(){
 	$('.addtextarea').click(function(){
 		$('.addtext-options').animate({'height':'250px'},300);
 	});
-	// Add text to the meme canvas
-	$('#addtext-add').click(function(){
-		idnum = window.textcount + 1;
-		idnum = "text_" + idnum;
-		var textcontent = document.getElementById('addtext-text').value;
-		var textcolor = document.getElementById('addtext-color').value;
-		var textsize = parseInt(document.getElementById('addtext-fontsize').value);
-		var textlh = parseInt(textsize * 1.2);
-		var newtext = new fabric.IText(textcontent, {
-			fontFamily: 'Helvetica',
-			fontSize: textsize,
-			fill: textcolor,
-			lineHeight: 1,
-			id: idnum
-		});
-		canvas.add(newtext);
-		window.textcount = window.textcount + 1;
-	});
 	// Slide open the icon panel
 	$('.addimage').click(function(){
 		$('.addimage-options').animate({'height':'100px'},300);
@@ -60,46 +45,6 @@ $(document).ready(function(){
 	// Slide open the shape panel
 	$('.addshape').click(function(){
 		$('.addshape-options').animate({'height':'150px'},300);
-	});
-	// Add shape-box
-	$('#addshape-box').click(function(){
-		var bgcolor = $('#addshape-color').val();
-		var opa = $('#addshape-opacity').val();
-		if (opa == '') {
-			opa = 1;
-		}
-		opa = parseFloat(opa);
-		if (bgcolor == '') {
-			bgcolor = '#ffffff';
-		}
-		var newShape = new fabric.Rect({
-			width: 100,
-			height: 100,
-			top: 100,
-			left: 100,
-			fill: bgcolor,
-			opacity: opa
-		});
-		canvas.add(newShape);
-	});
-	// Add shape-line
-	$('#addshape-line').click(function(){
-		var bgcolor = $('#addshape-color').val();
-		var lw = $('#addshape-lw').val();
-		if (lw == '0' || lw == '') {
-			lw = 1;
-		}
-		lw = parseInt(lw);
-		if (bgcolor == '') {
-			bgcolor = '#ffffff';
-		}
-		var newShape = new fabric.Line([50,50,150,150], {
-			top: 100,
-			left: 100,
-			stroke: bgcolor,
-			strokeWidth: lw
-		});
-		canvas.add(newShape);
 	});
 	// Slide open the download options
 	$('#downloadmeme-show').click(function(){
@@ -113,13 +58,29 @@ $(document).ready(function(){
 	});
 	// Delete objects if they are dragged off to the left
 	canvas.on('mouse:up', function(e){
-		var activeObject = e.target;
+		activeObject = e.target;
 		if ( activeObject ) {
 			if ( activeObject.get('left') > 630 ) {
 				canvas.remove(activeObject);
 			}
-		}
-	});
+      $('.active-container > div').css('display','none');
+      if ( activeObject.id.split("_").slice(0)[0] == "image" ) {
+      } else if ( activeObject.id.split("_").slice(0)[0] == "text" ) {
+        $('.active-container > .updatetext').css('display','block');
+        $('.updatetext #updatetext-color').val(activeObject.fill);
+        $('.updatetext #updatetext-fontsize').val(activeObject.fontSize);
+      } else if ( activeObject.id.split("_").slice(0)[0] == "box" ) {
+        $('.active-container > .updatebox').css('display','block');
+        $('.updatebox #updatebox-color').val(activeObject.fill);
+        $('.updatebox #updatebox-opacity').val(activeObject.opacity);
+      } else if ( activeObject.id.split("_").slice(0)[0] == "line" ) {
+        $('.active-container > .updateline').css('display','block');
+        $('.updateline #updateline-color').val(activeObject.stroke);
+        $('.updateline #updateline-lw').val(activeObject.strokeWidth);
+      }
+    }
+  });
+
 	// Populate saved memes the select menu to be loaded
 	populateTable();
 	// Populate background images to the select menu
@@ -141,6 +102,40 @@ $(document).ready(function(){
 	$('#bg-iframe').on('mouseout', listImages);
 	// Update iconlist
 	$('#icon-iframe').on('mouseout', listIcons);
+  // Add text to the meme canvas
+  $('#addtext-add').on('click', addText);
+  // Update text of active object
+  $('#updatetext').on('click', updateText);
+  // Add shape-line
+  $('#addshape-line').on('click', addLine);
+  // Update line of active object
+  $('#updateline').on('click', updateLine);
+  // Add shape-box
+  $('#addshape-box').on('click', addBox);
+  // Update box of active object
+  $('#updatebox').on('click', updateBox);
+  // Bring activeObject forward
+  $('.bringforward').click(function(){
+    canvas.bringForward(activeObject);
+  });
+  // Send activeObject back
+  $('.sendbackward').click(function(){
+    canvas.sendBackwards(activeObject);
+  });
+
+  // Add delete function for active objects
+  window.onkeyup = function(event) {
+    if (activeObject) {
+      if (event.keyCode == 46 || event.keyCode == 63272) {
+        canvas.remove(activeObject);
+      }
+    }
+  };
+
+  // Clear activeobject edits when selection dropped
+  canvas.on("selection:cleared", function(event){
+    $('.active-container > div').css('display','none');
+  });
 
 });
 
@@ -180,7 +175,7 @@ function saveMeme(event){
             	// Throw error if there is one
             	alert('Error: ' + response.msg);
             }
-        });
+          });
 	}
 };
 
@@ -265,6 +260,109 @@ function loadIconCanvas(event) {
 		window.imagecount = window.imagecount + 1;
 	});
 };
+
+function addText(event) {
+  idnum = window.textcount + 1;
+  idnum = "text_" + idnum;
+  var textcontent = document.getElementById('addtext-text').value;
+  var textcolor = document.getElementById('addtext-color').value;
+  var textsize = parseInt(document.getElementById('addtext-fontsize').value);
+  var textlh = parseInt(textsize * 1.2);
+  var newtext = new fabric.IText(textcontent, {
+    fontFamily: 'Helvetica',
+    fontSize: textsize,
+    fill: textcolor,
+    lineHeight: 1,
+    id: idnum
+  });
+  canvas.add(newtext);
+  window.textcount = window.textcount + 1;
+}
+
+function updateText(event) {
+  var newtextcolor = document.getElementById('updatetext-color').value;
+  var newtextsize = parseInt(document.getElementById('updatetext-fontsize').value);
+  if (canvas.backgroundColor) {
+    var backgroundcolor = canvas.backgroundColor;
+  } else {
+    var backgroundcolor = 'rgba(0,0,0,0)';
+  }
+  activeObject.fill = newtextcolor;
+  activeObject.fontSize = newtextsize;
+  canvas.setBackgroundColor(backgroundcolor, canvas.renderAll.bind(canvas));
+}
+
+function addLine(){
+  var bgcolor = $('#addshape-color').val();
+  var lw = $('#addshape-lw').val();
+  if (lw == '0' || lw == '') {
+    lw = 1;
+  }
+  lw = parseInt(lw);
+  if (bgcolor == '') {
+    bgcolor = '#ffffff';
+  }
+  var idnum = "line_" + window.linecount;
+  var newShape = new fabric.Line([50,50,150,150], {
+   top: 100,
+   left: 100,
+   stroke: bgcolor,
+   strokeWidth: lw
+ });
+  newShape.set('id',idnum);
+  canvas.add(newShape);
+  window.linecount += 1;
+}
+
+function updateLine() {
+  var newlinecolor = document.getElementById('updateline-color').value;
+  var newlinelw = parseInt(document.getElementById('updateline-lw').value);
+  if (canvas.backgroundColor) {
+    var backgroundcolor = canvas.backgroundColor;
+  } else {
+    var backgroundcolor = 'rgba(0,0,0,0)';
+  }
+  activeObject.stroke = newlinecolor;
+  activeObject.strokeWidth = newlinelw;
+  canvas.setBackgroundColor(backgroundcolor, canvas.renderAll.bind(canvas));
+}
+
+function addBox(){
+  var bgcolor = $('#addshape-color').val();
+  var opa = $('#addshape-opacity').val();
+  if (opa == '') {
+    opa = 1;
+  }
+  opa = parseFloat(opa);
+  if (bgcolor == '') {
+    bgcolor = '#ffffff';
+  }
+  var idnum = "box_" + window.boxcount;
+  var newShape = new fabric.Rect({
+   width: 100,
+   height: 100,
+   top: 100,
+   left: 100,
+   fill: bgcolor,
+   opacity: opa
+ });
+  newShape.set('id',idnum);
+  canvas.add(newShape);
+  window.boxcount += 1;
+}
+
+function updateBox() {
+  var newboxcolor = document.getElementById('updatebox-color').value;
+  var newboxopa = document.getElementById('updatebox-opacity').value;
+  if (canvas.backgroundColor) {
+    var backgroundcolor = canvas.backgroundColor;
+  } else {
+    var backgroundcolor = 'rgba(0,0,0,0)';
+  }
+  activeObject.fill = newboxcolor;
+  activeObject.opacity = newboxopa;
+  canvas.setBackgroundColor(backgroundcolor, canvas.renderAll.bind(canvas));
+}
 
 function resizeCanvas(event) {
 	// Resize the canvas in all aspects and resize stuff on the canvas

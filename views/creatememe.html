@@ -22,6 +22,7 @@
       </a>
       <div class="main-menu">
         <p>Welcome <span id="cookied-name"></span>!</p>
+        <a href="/create">One click create</a>
         <div class="main-menu-container">
           <ul>
             <a href="/home"><li>User Panel</li></a>
@@ -33,6 +34,31 @@
     </div>
     <div class="content-container">
       <div class="options-container">
+        <div class="row">
+          <div class="active-container options-container-single">
+            <div class="updatetext">
+              <input id="updatetext-color" class="color form-control" type="text" value="ffffff">
+              <input id="updatetext-fontsize" class="form-control" type="text" value="40">
+              <button class="bringforward">Bring Forward</button>
+              <button class="sendbackward">Send Backward</button>
+              <button id="updatetext">Update Text</button>
+            </div>
+            <div class="updateline">
+              <input id="updateline-color" class="color form-control" type="text" value="ffffff">
+              <input id="updateline-lw" class="form-control" type="text" value="1">
+              <button class="bringforward">Bring Forward</button>
+              <button class="sendbackward">Send Backward</button>
+              <button id="updateline">Update Line</button>
+            </div>
+            <div class="updatebox">
+              <input id="updatebox-color" class="color form-control" type="text" value="ffffff">
+              <input id="updatebox-opacity" class="form-control" type="text" value="1">
+              <button class="bringforward">Bring Forward</button>
+              <button class="sendbackward">Send Backward</button>
+              <button id="updatebox">Update Box</button>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="meme-load-container options-container-single">
             <button id="meme-loader">Load Meme</button>
@@ -95,8 +121,8 @@
             <div class="addshape-options options-panel">
               <input id="addshape-color" class="color form-control" type="text" value="ffffff">
               <br /><br />
-              <input id="addshape-opacity" class="form-control" type="text" placeholder="Opacity (0 - 1)">
               <input id="addshape-lw" class="form-control" type="text" placeholder="Line Width">
+              <input id="addshape-opacity" class="form-control" type="text" placeholder="Opacity (0 - 1)">
               <br /><br />
               <button id="addshape-line">Add Line</button>
               <button id="addshape-box">Add Box</button>

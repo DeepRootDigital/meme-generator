@@ -39,3 +39,8 @@
   padding:6px 10px;
   border: 1px solid #000;
 }
+
+.main-menu > a {
+  float: left;
+  clear: both;
+}

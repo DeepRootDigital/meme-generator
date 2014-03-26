@@ -1,6 +1,7 @@
 @import 'signinup.css';
 @import 'mainmenu.css';
 @import 'frontpage.css';
+@import 'home.css';
 
 /* General CSS */
 
@@ -135,7 +136,6 @@ input[type="file"] {
 
 .home-icon {
   width:20%;
-  /*margin:40px 6.5%;*/
   height:200px;
   float:left;
   border:1px solid #000;

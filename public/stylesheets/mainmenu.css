@@ -7,12 +7,21 @@
   float:left;
 }
 
-/*.header-container img {
+.header-container img {
   height:80%;
   margin-top:10px;
   width:auto;
   float:left;
-}*/
+}
+
+.header-container .welcome {
+  position: absolute;
+  margin: 0;
+  margin-left: 60px;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 24px;
+}
 
 .main-menu {
   width:50%;

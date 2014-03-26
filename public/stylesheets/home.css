@@ -13,7 +13,7 @@ button:focus {
 	float: none !important;
 }
 .mobile-nav-icon {
-	margin: 8px 0 0 0;
+	margin: 15px 0 0 0!important;
 	display: block !important;
 	cursor: pointer;
 }
@@ -67,6 +67,7 @@ button:focus {
 	height: 0 !important;
 	min-height: 100px !important;
 	float: none !important;
+	padding-top: 20px;
 }
 .main-menu-container {
 	position: relative !important;
@@ -119,13 +120,7 @@ button:focus {
 }
 .close-menu {
 	display: inline !important;
-	/*width: 152px;
-	height: 52px;
-	background-image: url('../images/close-menu.png');
-	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0);
-	border: none;*/
-	margin: 25px 0 0 90px;
+	margin: 15px 0 0 25px;
 	cursor: pointer;
 	font-family: raleway;
 	font-weight: 300;
@@ -133,17 +128,11 @@ button:focus {
 	transition: all .3s linear 0s;
 }
 .close-menu-icon {
-	margin: 21px 0 0 -225px;
+	margin: 21px 0 0 27px;
 }
 .log-out {
 	display: inline !important;
-	/*width: 152px;
-	height: 52px;
-	background-image: url('../images/log-out.png');
-	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0);
-	border: none;*/
-	margin: 25px 0 0px 20px;
+	margin: 15px 0 0px 20px;
 	cursor: pointer;
 	font-family: raleway;
 	font-weight: 300;
@@ -159,7 +148,7 @@ button:focus {
 	float: right;
 	height: auto;
 	width: 150px;
-	margin: -151px 0 0 0px;
+	margin: -136px 0 0 0px;
 	box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
 	transition: all 0.1s linear 0s;
 	background-color: rgb(185, 230, 216);
@@ -170,26 +159,9 @@ button:focus {
 	box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
 }
 #one-click-create:active {
-	margin: -149px -2px 0 0;
+	margin: -134px -2px 0 0;
 	box-shadow: none;
 }
 a:-webkit-any-link {
 	text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

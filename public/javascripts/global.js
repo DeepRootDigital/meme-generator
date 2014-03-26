@@ -30,6 +30,36 @@ $(document).ready(function() {
 		$('.preset-menu').animate({'height':'400px'},300);
 	});
 
+  //DROP DOWN MENU CONTROLS
+  var box = $('.main-menu-container');
+  $('.mobile-nav-icon').on('click', function() {
+    if ($('.main-menu-container').css('height') == '485px') {
+      $(box).css({'width' : '85px'});
+      setTimeout(function() {
+        $('.main-menu-container').css({'height' : '0'});
+      }, 700);
+    } else {
+      $('.main-menu-container').css({'height' : '485px'});
+      setTimeout(function() {
+        $(box).css({'width' : '280px'});
+      }, 700);
+    }
+  });
+  $('.close-menu').on('click', function() {
+    $(box).css({'width' : '85px'});
+    setTimeout(function() {
+      $('.main-menu-container').css({'height' : '0'});
+    }, 700);
+  });
+
+  //HOMEPAGE ROLLOVER CONTROLS
+  $('.block').on('mouseenter', function() {
+    $(this).find('.home-icon p').css({'color' : '#4c4c4c'});
+  });
+  $('.block').on('mouseleave', function() {
+    $(this).find('.home-icon p').css({'color' : '#fff'});
+  });
+
 });
 
 function loggedinUser() {
@@ -55,12 +85,12 @@ function ifAdmin() {
 /* Get the cookie info */
 function getCookie(cname)
 {
-var name = cname + "=";
-var ca = document.cookie.split(';');
-for(var i=0; i<ca.length; i++) 
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) 
   {
-  var c = ca[i].trim();
-  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+    var c = ca[i].trim();
+    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
   }
-return "";
+  return "";
 }

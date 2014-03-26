@@ -1,4 +1,18 @@
 $(document).ready(function(){
+	// Check if logged in
+	if (getCookie('id')) {
+		var usern = getCookie('id');
+		console.log(usern);
+		$.getJSON( '/userlist', function( data ) {
+			$.each(data, function(){
+				console.log(usern);
+				if (usern == this.username) {
+					window.location = "/home";
+				}
+			});
+		});
+	}
+
 	// Script to register a new user
 	$('#signup-register').click(function(event){
 		event.preventDefault();

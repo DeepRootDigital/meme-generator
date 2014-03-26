@@ -16,7 +16,7 @@ var fs = require('fs');
 // Database
 
 var mongo = require('mongoskin');
-// var db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
+//db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
 var db = mongo.db("mongodb://localhost:27017/memeappdev", {native_parser:true});
 
 var app = express();
@@ -79,6 +79,7 @@ app.post('/addmeme', meme.addmeme(db));
 app.post('/bglist', bg.addbg(db));
 app.post('/uploadimg', images.uploadFile(db));
 app.post('/uploadicon', images.uploadIcon(db));
+app.post('/dropzoneupload', images.dzUpload(db));
 app.post('/register', user.register(db));
 app.post('/deletememe', meme.deletememe(db));
 app.post('/deletebg', bg.deletebg(db));

@@ -7,6 +7,17 @@ var memeListData = [];
 var activeObject;
 
 $(document).ready(function(){
+
+  $('#dropzone').dropzone({ 
+    url: '/dropzoneupload',
+    init: function() {
+      this.on("addedfile", function(file) { dropzoneCanvas(file.name); });
+    },
+    headers: { "un" : getCookie('id') },
+    previewsContainer: "#previewCon",
+    clickable: false
+  });
+
 	// Open memeloader area
 	$('#meme-loader').click(function(){
 		$('.meme-loader').animate({'height':'100px'},300);
@@ -159,7 +170,7 @@ function saveMeme(event){
 			'memename' : memename,
 			'json' : jsonstring,
       'username' : usern
-		}
+    }
 		// Execute ajax request
 		$.ajax({
 			type: 'POST',
@@ -193,7 +204,7 @@ function populateTable() {
         tableContent += this.memename;
         tableContent += '</option>';
       }
-		});
+    });
 		// Insert into the meme loading selector
 		$('#memeLoadSelector').html(tableContent);
 	});
@@ -242,9 +253,11 @@ function listIcons() {
 	var iconTable = '';
 	$.getJSON( '/iconlist', function( data) {
 		$.each(data, function(){
-			iconTable += '<option>';
-			iconTable += this.filename;
-			iconTable += '</option>';
+      if (getCookie('id') == this.username ) {
+        iconTable += '<option>';
+        iconTable += this.filename;
+        iconTable += '</option>';
+      }
 		});
 		$('#icon-choice').html(iconTable);
 	});
@@ -265,6 +278,18 @@ function loadIconCanvas(event) {
 		window.imagecount = window.imagecount + 1;
 	});
 };
+
+function dropzoneCanvas(filename) {
+  event.preventDefault();
+  var thisIcon = filename;
+  idnum = window.imagecount + 1;
+  idnum = "image_" + idnum;
+  fabric.Image.fromURL('icons/' + thisIcon,function(smallimage) {
+    smallimage.set('id',idnum);
+    canvas.add(smallimage);
+  });
+  window.imagecount = window.imagecount + 1;
+}
 
 function addText(event) {
   idnum = window.textcount + 1;

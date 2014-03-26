@@ -15,6 +15,7 @@
 <body>
   <form action="/uploadicon" method="POST" enctype="multipart/form-data">
     <input type="file" name="newIcon" class="form-control">
+    <input type="hidden" name="username" id="usern">
     <input type="submit" class="form-control">
   </form>
   <div id="bg-output"></div>
@@ -23,5 +24,10 @@
   <script type="text/javascript" src="javascripts/dropzone.js"></script>
   <script src="javascripts/function.js"></script>
   <script src="javascripts/global.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+      document.getElementById('usern').value = getCookie('id');
+    }
+  </script>
 </body>
 </html>

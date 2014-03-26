@@ -834,6 +834,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       this.on("complete", function(file) {
         if (_this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
           return setTimeout((function() {
+
             return _this.emit("queuecomplete");
           }), 0);
         }

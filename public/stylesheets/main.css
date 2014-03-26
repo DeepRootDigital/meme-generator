@@ -123,8 +123,12 @@ input[type="file"] {
   padding:0;
 }
 
-.mememaker-left > div {
+.mememaker-left > div > div {
   border:1px solid #adadad;
+}
+
+.dropzone-previews {
+  display:none;
 }
 
 /* Home Designs */

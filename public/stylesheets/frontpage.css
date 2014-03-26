@@ -1,27 +1,27 @@
 .content-container {
 	box-shadow: none;
 }
-::-webkit-input-placeholder {
+.footer-form ::-webkit-input-placeholder {
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 300;
 }
 /* Firefox 18- */
-:-moz-placeholder {
+.footer-form :-moz-placeholder {
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 300;
 }
 /* Firefox 19+ */
-::-moz-placeholder {
+.footer-form ::-moz-placeholder {
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 300;
 }
-:-ms-input-placeholder {
+.footer-form :-ms-input-placeholder {
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,700,900,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,300,700,800' rel='stylesheet' type='text/css'>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Meme App</title>
@@ -10,41 +12,117 @@
   <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
   <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/home.css">
   <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-  <!--[if lt IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="header-container">
+<!--[if lt IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- HEADER SECTION -->
+  <div class="header-container">
+    <div class="center">
+      <img class="mobile-nav-icon" src="images/mobile-nav-icon.png" alt="" />
       <a href="" id="logolink">
-        <img src="images/logo.png" alt="Memegen Logo">
+        <img class="logo" src="images/logo.png" alt="Memegen Logo">
       </a>
       <div class="main-menu">
-        <p>Welcome <span id="cookied-name"></span>!</p>
-        <a href="/create">One click create</a>
+        <!--<p>Welcome <span id="cookied-name"></span>!</p>
+        <a href="/create">One click create</a>-->
         <div class="main-menu-container">
-          <ul>
-            <a href="/home"><li>User Panel</li></a>
-            <a href="/choose"><li>Create Meme</li></a>
-            <a href="" id="logout"><li>Logout</li></a>
-          </ul>
+          <div class="nav">
+            <ul>
+              <a href="/home"><img class="list-image" src="images/test.png" alt="" /><li>User Panel</li></a>
+              <a href="/choose"><img class="list-image" src="images/list-image-2.png" alt="" /><li>Create Meme</li></a>
+              <a href=""><img class="list-image" src="images/list-image-3.png" alt="" /><li>Manage</li></a>
+              <a href=""><img class="list-image" src="images/list-image-4.png" alt="" /><li>Template Center</li></a>
+              <a href=""><img class="list-image" src="images/list-image-5.png" alt="" /><li>Learning Center</li></a>
+              <a href=""><img class="list-image" src="images/list-image-6.png" alt="" /><li>Support Center</li></a>
+            </ul>
+            <!--<button class="close-menu"></button>
+            <button class="log-out"></button>-->
+            <img class="close-menu-icon" src="images/list-image-7.png" alt="" />
+            <p class="close-menu">Close Menu</p>
+            <p class="log-out">Log Out</p>
+            <div class="clear"></div>
+          </div>
         </div>
       </div>
+      <div class="clear"></div>
+      <button id="one-click-create">One Click Create</button>
     </div>
-    <div class="content-container">
+  </div>
+
+  <!-- MAIN PAGE SECTION -->
+  <div class="content-container">
+    <div class="center">
       <div class="row">
-        <a href="/choose"><div class="home-icon">Create Meme</div></a>
+        <a class="block type-small" href="/choose">
+          <div class="home-icon">
+            <p>Create Meme</p>
+          </div>
+        </a>
+         <a class="block type-small" href="/manage">
+          <div class="home-icon">
+            <p>Manage Memes</p>
+          </div>
+        </a>
+        <a class="block type-small" href="/templatecenter">
+          <div class="home-icon">
+            <p>Template Center</p>
+          </div>
+        </a>
+        <!--<a href="/choose"><div class="home-icon">Create Meme</div></a>
         <a href="/manage"><div class="home-icon">Manage Memes</div></a>
-        <a href="/templatecenter"><div class="home-icon">Template Center</div></a>
+        <a href="/templatecenter"><div class="home-icon">Template Center</div></a>-->
       </div>
       <div class="row">
-        <a href="/learn"><div class="home-icon-wide">Learning Center</div></a>
-        <a href="/support"><div class="home-icon-wide">Support Center</div></a>
+        <a class="block type-large left" href="/learn">
+          <div class="home-icon">
+            <p>Learning Center</p>
+          </div>
+        </a>
+        <a class="block type-large right" href="/support">
+          <div class="home-icon">
+            <p>Support Center</p>
+          </div>
+        </a>
       </div>
+      <div class="clear"></div>
     </div>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="javascripts/global.js"></script>
-  </body>
-  </html>
+  </div>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="javascripts/global.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  //DROP DOWN MENU CONTROLS
+  var box = $('.main-menu-container');
+  $('.mobile-nav-icon').on('click', function() {
+    $('.main-menu-container').css({'height' : '485px'});
+    setTimeout(function() {
+      $(box).css({'width' : '280px'});
+    }, 700);
+  });
+  $('.close-menu').on('click', function() {
+    $(box).css({'width' : '85px'});
+    setTimeout(function() {
+      $('.main-menu-container').css({'height' : '0'});
+    }, 700);
+  });
+
+  //HOMEPAGE ROLLOVER CONTROLS
+  $('.block').on('mouseenter', function() {
+    $(this).find('.home-icon p').css({'color' : '#4c4c4c'});
+  });
+  $('.block').on('mouseleave', function() {
+    $(this).find('.home-icon p').css({'color' : '#fff'});
+  });
+});
+
+</script>
+</body>
+</html>

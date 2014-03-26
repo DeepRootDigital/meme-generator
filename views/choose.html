@@ -17,32 +17,53 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="header-container">
-      <a href="" id="logolink">
-        <img src="images/logo.png" alt="Memegen Logo">
-      </a>
-      <div class="main-menu">
-        <p>Welcome <span id="cookied-name"></span>!</p>
-        <a href="/create">One click create</a>
-        <div class="main-menu-container">
-          <ul>
-            <a href="/home"><li>User Panel</li></a>
-            <a href="/choose"><li>Create Meme</li></a>
-            <a href="" id="logout"><li>Logout</li></a>
-          </ul>
+      <div class="center">
+        <img class="mobile-nav-icon" src="images/mobile-nav-icon.png" alt="" />
+        <p class="welcome">Welcome <span id="cookied-name"></span>!</p>
+        <a href="" id="logolink"><h1 class="title">Meme<span>GEN</span></h1></a>
+        <div class="main-menu">
+          <div class="main-menu-container">
+            <div class="nav">
+              <ul>
+                <a href="/home"><img class="list-image" src="images/test.png" alt="" /><li>User Panel</li></a>
+                <a href="/choose"><img class="list-image" src="images/list-image-2.png" alt="" /><li>Create Meme</li></a>
+                <a href=""><img class="list-image" src="images/list-image-3.png" alt="" /><li>Manage</li></a>
+                <a href=""><img class="list-image" src="images/list-image-4.png" alt="" /><li>Template Center</li></a>
+                <a href=""><img class="list-image" src="images/list-image-5.png" alt="" /><li>Learning Center</li></a>
+                <a href=""><img class="list-image" src="images/list-image-6.png" alt="" /><li>Support Center</li></a>
+              </ul>
+              <img class="close-menu-icon" src="images/list-image-7.png" alt="" />
+              <p class="close-menu">Close Menu</p>
+              <p class="log-out" id="logout">Log Out</p>
+              <div class="clear"></div>
+            </div>
+          </div>
         </div>
+        <div class="clear"></div>
+        <a href="/create"><button id="one-click-create">One Click Create</button></a>
       </div>
     </div>
+
+
     <div class="content-container">
-      <div class="row">
-        <a href="/create"><div class="home-icon-wide">Start from Scratch</div></a>
-        <div class="home-icon-wide" id="choose-preset">
-          Choose Preset
-          <div class="preset-menu">
-            <p>Social Presets</p>
-              <button id="facebook-preset">Facebook</button>
-              <button id="twitter-preset">Twitter</button>
-            <p>Saved Templates</p>
-          </div>
+      <div class="center">
+        <div class="row">
+          <a class="block type-large left" href="/create">
+            <div class="home-icon">
+              <p>Start from Scratch</p>
+            </div>
+          </a>
+          <a class="block type-large right" href="#" id="choose-preset">
+            <div class="home-icon">
+              <p>Choose Preset</p>
+              <div class="preset-menu">
+                <p>Social Presets</p>
+                <button id="facebook-preset">Facebook</button>
+                <button id="twitter-preset">Twitter</button>
+                <p>Saved Templates</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>

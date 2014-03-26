@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,700,900,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,300,700,800' rel='stylesheet' type='text/css'>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Meme App</title>
@@ -11,25 +9,21 @@
 
   <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,700,900,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,300,700,800' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="stylesheets/normalize.css">
-  <link rel="stylesheet" href="stylesheets/home.css">
   <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-<!--[if lt IE 8]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <!-- HEADER SECTION -->
-  <div class="header-container">
-    <div class="center">
-      <img class="mobile-nav-icon" src="images/mobile-nav-icon.png" alt="" />
-      <a href="" id="logolink">
-        <img class="logo" src="images/logo.png" alt="Memegen Logo">
-      </a>
-      <div class="main-menu">
-        <!--<p>Welcome <span id="cookied-name"></span>!</p>
-        <a href="/create">One click create</a>-->
+  <!--[if lt IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-container">
+      <div class="center">
+        <img class="mobile-nav-icon" src="images/mobile-nav-icon.png" alt="" />
+        <p class="welcome">Welcome <span id="cookied-name"></span>!</p>
+        <a href="" id="logolink"><h1 class="title">Meme<span>GEN</span></h1></a>
+        <div class="main-menu">
         <div class="main-menu-container">
           <div class="nav">
             <ul>
@@ -40,19 +34,18 @@
               <a href=""><img class="list-image" src="images/list-image-5.png" alt="" /><li>Learning Center</li></a>
               <a href=""><img class="list-image" src="images/list-image-6.png" alt="" /><li>Support Center</li></a>
             </ul>
-            <!--<button class="close-menu"></button>
-            <button class="log-out"></button>-->
             <img class="close-menu-icon" src="images/list-image-7.png" alt="" />
             <p class="close-menu">Close Menu</p>
-            <p class="log-out">Log Out</p>
+            <p class="log-out" id="logout">Log Out</p>
             <div class="clear"></div>
           </div>
         </div>
       </div>
       <div class="clear"></div>
-      <button id="one-click-create">One Click Create</button>
+      <a href="/create"><button id="one-click-create">One Click Create</button></a>
     </div>
   </div>
+
 
   <!-- MAIN PAGE SECTION -->
   <div class="content-container">
@@ -63,7 +56,7 @@
             <p>Create Meme</p>
           </div>
         </a>
-         <a class="block type-small" href="/manage">
+        <a class="block type-small" href="/manage">
           <div class="home-icon">
             <p>Manage Memes</p>
           </div>
@@ -92,37 +85,8 @@
       <div class="clear"></div>
     </div>
   </div>
-<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="javascripts/global.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function() {
-
-  //DROP DOWN MENU CONTROLS
-  var box = $('.main-menu-container');
-  $('.mobile-nav-icon').on('click', function() {
-    $('.main-menu-container').css({'height' : '485px'});
-    setTimeout(function() {
-      $(box).css({'width' : '280px'});
-    }, 700);
-  });
-  $('.close-menu').on('click', function() {
-    $(box).css({'width' : '85px'});
-    setTimeout(function() {
-      $('.main-menu-container').css({'height' : '0'});
-    }, 700);
-  });
-
-  //HOMEPAGE ROLLOVER CONTROLS
-  $('.block').on('mouseenter', function() {
-    $(this).find('.home-icon p').css({'color' : '#4c4c4c'});
-  });
-  $('.block').on('mouseleave', function() {
-    $(this).find('.home-icon p').css({'color' : '#fff'});
-  });
-});
-
-</script>
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="javascripts/global.js"></script>
 </body>
 </html>

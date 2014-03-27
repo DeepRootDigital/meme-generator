@@ -1,34 +1,34 @@
 $(document).ready(function() {
 
-  // Determine the logged in user and display their username
-  loggedinUser();
-  ifAdmin();
+	// Determine the logged in user and display their username
+	loggedinUser();
+	ifAdmin();
 
-  // Logout function
-  $('#logout').click(function(event){
-    event.preventDefault();
-    // Remove the cookie
-    document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    // Redirect to login page
-    window.location = "/login";
-  });
+	// Logout function
+	$('#logout').click(function(event){
+		event.preventDefault();
+		// Remove the cookie
+		document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		// Redirect to login page
+		window.location = "/login";
+	});
 
-  // Give link functionality to the logo
-  $('#logolink').click(function(event){
-    event.preventDefault();
-    if (getCookie("id")) {
-      // Redirct to home if logged in
-      window.location = "/home";
-    } else {
-      // Redirect to frontpage if logged out
-      window.location = "/";
-    }
-  });
+	// Give link functionality to the logo
+	$('#logolink').click(function(event){
+		event.preventDefault();
+		if (getCookie("id")) {
+			// Redirct to home if logged in
+			window.location = "/home";
+		} else {
+			// Redirect to frontpage if logged out
+			window.location = "/";
+		}
+	});
 
-  // Functionality for choosing preset box
-  $('#choose-preset').click(function(){
-    $('.preset-menu').animate({'height':'400px'},300);
-  });
+	// Functionality for choosing preset box
+	$('#choose-preset').click(function(){
+		$('.preset-menu').animate({'height':'400px'},300);
+	});
 
   //DROP DOWN MENU CONTROLS
   var box = $('.main-menu-container');
@@ -63,21 +63,21 @@ $(document).ready(function() {
 });
 
 function loggedinUser() {
-  var loggeduser = getCookie("id");
-  $('#cookied-name').text(loggeduser);
+	var loggeduser = getCookie("id");
+	$('#cookied-name').text(loggeduser);
 }
 
 function ifAdmin() {
-  var userlvl;
-  var loggeduser = getCookie("id");
-  $.getJSON( '/userlist', function( data ) {
+	var userlvl;
+	var loggeduser = getCookie("id");
+	$.getJSON( '/userlist', function( data ) {
     $.each(data, function(){
       if (loggeduser == this.username) {
         userlvl = this.userlevel;
       }
     });
     if (userlvl == "Admin") {
-      $('.main-menu-container > ul').prepend('<a href="/admin"><li>Admin Panel</li></a>');
+    	$('.main-menu-container > ul').prepend('<a href="/admin"><li>Admin Panel</li></a>');
     }
   });
 }

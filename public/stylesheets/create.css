@@ -1,0 +1,162 @@
+.options-container {
+  width:25%;
+  position:absolute;
+  height:100%;
+  background-color: #4c4c4c;
+  padding: 0;
+  border: none;
+  padding-top:50px;
+  box-shadow: inset 0px 0px 72px -11px rgb(0, 0, 0);
+}
+.options-container ul {
+  margin: 0 0 0 -40px;
+  list-style-type: none;
+}
+.options-container ul li {
+  position: relative;
+  margin: 0;
+  padding: 22px 0 0 0;
+  width: 100%;
+  height: 70px;
+  box-shadow: inset 0px -2px 1px 0px #383838;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  transition: all .3s linear 0s;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: raleway;
+  cursor: pointer;
+}
+.options-container ul li img {
+  margin-right:10px;
+}
+.options-container ul li p {
+  margin:0;
+  display:inline-block;
+}
+.options-container ul li:hover {
+  color: #89bbab;
+}
+.options-container .submenu-container {
+  position: absolute;
+  margin-left: 100%;
+  top: 0;
+  background-color: #4c4c4c;
+  z-index:10000;
+  height:0;
+  width:0;
+  overflow:hidden;
+  transition: all .3s linear 0s;
+  box-shadow: inset 0px 0px 72px -11px rgb(0, 0, 0);
+}
+.settings-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  background-color: #4c4c4c;
+  width:75%;
+}
+.settings-box ul {
+  padding:0;
+  margin: 0 0 0 -40px;
+  list-style-type: none;
+  height: 50px;
+  position:absolute;
+  top:0;
+  right:0;
+}
+.settings-box ul li {
+  margin: 0;
+  height: 50px;
+  float: left;
+  box-shadow: inset 2px 0px 1px rgb(56, 56, 56);
+  /* border-left: 1px solid rgb(204, 204, 204); */
+  padding: 17px 20px 0 20px;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  font-family: raleway;
+  font-size:24px;
+  line-height:24px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all .3s linear 0s;
+}
+.settings-box ul li p {
+  margin:0;
+  display:inline-block;
+}
+.settings-box ul li:hover {
+  color: #89bbab;
+}
+.settings-box ul li:first-of-type {
+  border: none;
+}
+.settings-box .submenu-container {
+  position: absolute;
+  margin-top: 9px;
+  margin-left:-20px;
+  background-color: #4c4c4c;
+  z-index:10000;
+  height:0;
+  width:0;
+  overflow:hidden;
+  transition: all .3s linear 0s;
+  box-shadow: inset 0px 0px 72px -11px rgb(0, 0, 0);
+}
+.content-container {
+  position: relative;
+}
+.mememaker-left {
+  margin: 50px 0 0 0;
+}
+.list-icon {
+  position: absolute;
+  left: 20px;
+  top: 14px;
+}
+.submenu-container.bg {
+  height:285px;
+  width:285px;
+  padding:20px;
+}
+.submenu-container.textb {
+  height:285px;
+  width:285px;
+  padding:20px;
+}
+.submenu-container.box {
+  height:285px;
+  width:285px;
+  padding:20px;
+}
+.submenu-container.icons {
+  height:285px;
+  width:285px;
+  padding:20px;
+}
+.submenu-container.lines {
+  height:285px;
+  width:285px;
+  padding:20px;
+}
+.submenu-container.memeload {
+  height:285px;
+  width:285px;
+  margin-left:-215px;
+  padding:20px;
+}
+.submenu-container.dl {
+  height:285px;
+  width:285px;
+  margin-left:-49px;
+  padding:20px;
+}
+.submenu-container.save {
+  height:285px;
+  width:285px;
+  padding:20px;
+}

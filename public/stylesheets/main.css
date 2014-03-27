@@ -2,6 +2,7 @@
 @import 'mainmenu.css';
 @import 'frontpage.css';
 @import 'home.css';
+@import 'create.css';
 
 /* General CSS */
 
@@ -102,13 +103,7 @@ textarea.form-control {
   width:75%;
   float:left;
   padding:.5%;
-}
-
-.options-container {
-  width:25%;
-  float:left;
-  padding:10px;
-  border: 1px solid;
+  margin-left:25%;
 }
 
 .options-container-single {

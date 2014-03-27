@@ -16,7 +16,7 @@ var fs = require('fs');
 // Database
 
 var mongo = require('mongoskin');
-//db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
+// db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
 var db = mongo.db("mongodb://localhost:27017/memeappdev", {native_parser:true});
 
 var app = express();

@@ -454,12 +454,11 @@ function updateLine() {
 }
 
 function addBox(){
-  var bgcolor = $('#addshape-color').val();
-  var opa = $('#addshape-opacity').val();
+  var bgcolor = $('#addbox-color').val();
+  var opa = $('#addshape-opacity').slider("option","value");
   if (opa == '') {
     opa = 1;
   }
-  opa = parseFloat(opa);
   if (bgcolor == '') {
     bgcolor = '#ffffff';
   }

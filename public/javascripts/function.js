@@ -8,14 +8,58 @@ var activeObject;
 
 $(document).ready(function(){
 
+  $('#addtext-fontsize').slider({ max: 200, min:1});
+  $('#addtext-fontsize').on("mouseup", function(){
+    var fontsize = $('#addtext-fontsize').slider("option","value");
+    $(this).parent().find('p span').text(fontsize);
+  });
+
+  $('#addshape-opacity').slider({ max: 1, min:0, step: 0.01});
+  $('#addshape-opacity').on("mouseup", function(){
+    var opacity = $('#addshape-opacity').slider("option","value");
+    $(this).parent().find('p span').text(opacity);
+  });
+
   $('#dropzone').dropzone({ 
     url: '/dropzoneupload',
     init: function() {
-      this.on("addedfile", function(file) { dropzoneCanvas(file.name); });
+      this.on("success", function(file) { dropzoneCanvas(file.name); });
     },
     headers: { "un" : getCookie('id') },
     previewsContainer: "#previewCon",
     clickable: false
+  });
+
+  $('#bg-dropzone').dropzone({ 
+    url: '/uploadimg',
+    init: function() {
+      this.on("success", function(file) { 
+        listImages();
+        $('.upload-response').animate({'height':'60px'},function(){
+          setTimeout(function(){
+            $('.upload-response').animate({'height':'0px'},300);
+          },1500);
+        });
+      });
+    },
+    headers: { "un" : getCookie('id') },
+    previewsContainer: "#previewCon"
+  });
+
+  $('#icon-dropzone').dropzone({ 
+    url: '/uploadicon',
+    init: function() {
+      this.on("success", function(file) { 
+        listIcons();
+        $('.upload-response').animate({'height':'60px'},function(){
+          setTimeout(function(){
+            $('.upload-response').animate({'height':'0px'},300);
+          },1500);
+        });
+      });
+    },
+    headers: { "un" : getCookie('id') },
+    previewsContainer: "#previewCon"
   });
 
 	// Open memeloader area
@@ -149,10 +193,6 @@ $(document).ready(function(){
 	$('#icon-choice-submit').on('click', loadIconCanvas);
 	// Click trigger to resize canvas
 	$('#canvas-resize').on('click', resizeCanvas);
-	// Update bglist
-	$('#bg-iframe').on('mouseout', listImages);
-	// Update iconlist
-	$('#icon-iframe').on('mouseout', listIcons);
   // Add text to the meme canvas
   $('#addtext-add').on('click', addText);
   // Update text of active object
@@ -352,7 +392,7 @@ function addText(event) {
   idnum = "text_" + idnum;
   var textcontent = document.getElementById('addtext-text').value;
   var textcolor = document.getElementById('addtext-color').value;
-  var textsize = parseInt(document.getElementById('addtext-fontsize').value);
+  var textsize = $('#addtext-fontsize').slider("option","value");
   var textlh = parseInt(textsize * 1.2);
   var newtext = new fabric.IText(textcontent, {
     fontFamily: 'Helvetica',

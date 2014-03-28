@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" href="stylesheets/normalize.css">
   <link rel="stylesheet" href="stylesheets/main.css">
+  <link rel="stylesheet" href="stylesheets/jquery-ui-1.10.4.custom.min.css">
 </head>
 <body>
   <!--[if lt IE 8]>
@@ -116,7 +117,9 @@
             <div class="submenu-container">
               <input value="ffffff" class="color" type="text" id="background-color">
               <button id="bg-solid-update">Choose Color</button>
-              <div id="bg-dropzone"></div>
+              <div id="bg-dropzone">
+                Click or Drag Image here to upload
+              </div>
               <select id="background-choice" class="form-control">
               </select>
               <button id="background-choice-submit">Choose bg</button>
@@ -131,7 +134,8 @@
             <div class="submenu-container">
               <textarea class="form-control" id="addtext-text"></textarea>
               <input id="addtext-color" class="color form-control" type="text" value="ffffff">
-              <input id="addtext-fontsize" class="form-control" type="text" value="40">
+              <p>Font size: <span></span>px</p>
+              <div id="addtext-fontsize"></div>
               <button id="addtext-add">Add Text</button>
             </div>
           </li>
@@ -142,7 +146,8 @@
             </div>
             <div class="submenu-container">          
               <input id="addbox-color" class="color form-control" type="text" value="ffffff">
-              <input id="addshape-opacity" class="form-control" type="text" placeholder="Opacity (0 - 1)">
+              <p>Opacity: <span></span></p>
+              <div id="addshape-opacity"></div>
               <button id="addshape-box">Add Box</button>
             </div>
           </li>
@@ -163,7 +168,9 @@
               <p>Icons</p>
             </div>
             <div class="submenu-container">
-              <div id="icon-dropzone"></div>
+              <div id="icon-dropzone">
+                Click or Drag Image here to upload
+              </div>
               <select id="icon-choice" class="form-control">
               </select>
               <input type="checkbox" name="grayscale" id="icon-grayscale" value="true">GrayScale
@@ -177,10 +184,14 @@
           </div>
           <div class="dropzone-previews" id="previewCon"></div>
         </div>
+        <div class="upload-response">
+          <p>File Uploaded.</p>
+        </div>
       </div>
       <script src="javascripts/fabric.min.js"></script>
       <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
       <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="javascripts/jquery-ui-1.10.4.custom.min.js"></script>
       <script type="text/javascript" src="javascripts/dropzone.js"></script>
       <script src="javascripts/function.js"></script>
       <script src="javascripts/global.js"></script>

@@ -163,5 +163,22 @@
 #bg-dropzone,#icon-dropzone {
   width:100%;
   float:left;
-  height:40px;
+  background-color:#89bbab;
+  border-radius:5px;
+  margin:10px 0;
+  padding:5%;
+  color:#ffe191;
+}
+#addtext-fontsize,#addshape-opacity {
+  float:left;
+  width:100%;
+  margin:10px 0;
+}
+.upload-response {
+  width:250px;
+  height:0px;
+  position:fixed;
+  right:0;
+  bottom:0;
+  background-color:#89bbab;
 }

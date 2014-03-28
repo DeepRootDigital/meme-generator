@@ -160,3 +160,8 @@
   width:285px;
   padding:20px;
 }
+#bg-dropzone,#icon-dropzone {
+  width:100%;
+  float:left;
+  height:40px;
+}

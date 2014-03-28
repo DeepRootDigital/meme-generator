@@ -26,10 +26,10 @@ exports.iconList = function(db) {
 
  exports.uploadFile = function(db) {
    return function(req, res) {
-     var oldPath = req.files.newImg.path;
-     var usern = req.body.username;
+     var oldPath = req.files.file.path;
+     var usern = req.headers.un;
      fs.readFile(oldPath, function (err, data) {
-       var fileName = req.files.newImg.originalFilename;
+       var fileName = req.files.file.originalFilename;
        var fileObj = {
         'filename' : fileName,
         'username' : usern
@@ -45,17 +45,17 @@ exports.iconList = function(db) {
 
  exports.uploadIcon = function(db) {
    return function(req, res) {
-     var oldPath = req.files.newIcon.path;
-     var usern = req.body.username;
+     var oldPath = req.files.file.path;
+     var usern = req.headers.un;
      fs.readFile(oldPath, function (err, data) {
-       var fileName = req.files.newIcon.originalFilename;
+       var fileName = req.files.file.originalFilename;
        var fileObj = {
         'filename' : fileName,
         'username' : usern
        }
        fs.rename(oldPath, 'public/icons/' + fileName, function (err) {
         db.collection('iconlist').insert(fileObj, function(err, result){
-         res.redirect('back');
+          res.end();
         });
        });
      });

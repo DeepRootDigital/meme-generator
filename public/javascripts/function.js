@@ -11,11 +11,29 @@ $(document).ready(function(){
   $('#dropzone').dropzone({ 
     url: '/dropzoneupload',
     init: function() {
-      this.on("addedfile", function(file) { dropzoneCanvas(file.name); });
+      this.on("success", function(file) { dropzoneCanvas(file.name); });
     },
     headers: { "un" : getCookie('id') },
     previewsContainer: "#previewCon",
     clickable: false
+  });
+
+  $('#bg-dropzone').dropzone({ 
+    url: '/uploadimg',
+    init: function() {
+      this.on("success", function(file) { listImages(); });
+    },
+    headers: { "un" : getCookie('id') },
+    previewsContainer: "#previewCon"
+  });
+
+  $('#icon-dropzone').dropzone({ 
+    url: '/uploadicon',
+    init: function() {
+      this.on("success", function(file) { listIcons(); });
+    },
+    headers: { "un" : getCookie('id') },
+    previewsContainer: "#previewCon"
   });
 
 	// Open memeloader area
@@ -149,10 +167,6 @@ $(document).ready(function(){
 	$('#icon-choice-submit').on('click', loadIconCanvas);
 	// Click trigger to resize canvas
 	$('#canvas-resize').on('click', resizeCanvas);
-	// Update bglist
-	$('#bg-iframe').on('mouseout', listImages);
-	// Update iconlist
-	$('#icon-iframe').on('mouseout', listIcons);
   // Add text to the meme canvas
   $('#addtext-add').on('click', addText);
   // Update text of active object

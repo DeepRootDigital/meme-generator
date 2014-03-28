@@ -8,6 +8,18 @@ var activeObject;
 
 $(document).ready(function(){
 
+  $('#addtext-fontsize').slider({ max: 200, min:1});
+  $('#addtext-fontsize').on("mouseup", function(){
+    var fontsize = $('#addtext-fontsize').slider("option","value");
+    $(this).parent().find('p span').text(fontsize);
+  });
+
+  $('#addshape-opacity').slider({ max: 1, min:0, step: 0.01});
+  $('#addshape-opacity').on("mouseup", function(){
+    var opacity = $('#addshape-opacity').slider("option","value");
+    $(this).parent().find('p span').text(opacity);
+  });
+
   $('#dropzone').dropzone({ 
     url: '/dropzoneupload',
     init: function() {
@@ -21,7 +33,14 @@ $(document).ready(function(){
   $('#bg-dropzone').dropzone({ 
     url: '/uploadimg',
     init: function() {
-      this.on("success", function(file) { listImages(); });
+      this.on("success", function(file) { 
+        listImages();
+        $('.upload-response').animate({'height':'60px'},function(){
+          setTimeout(function(){
+            $('.upload-response').animate({'height':'0px'},300);
+          },1500);
+        });
+      });
     },
     headers: { "un" : getCookie('id') },
     previewsContainer: "#previewCon"
@@ -30,7 +49,14 @@ $(document).ready(function(){
   $('#icon-dropzone').dropzone({ 
     url: '/uploadicon',
     init: function() {
-      this.on("success", function(file) { listIcons(); });
+      this.on("success", function(file) { 
+        listIcons();
+        $('.upload-response').animate({'height':'60px'},function(){
+          setTimeout(function(){
+            $('.upload-response').animate({'height':'0px'},300);
+          },1500);
+        });
+      });
     },
     headers: { "un" : getCookie('id') },
     previewsContainer: "#previewCon"
@@ -366,7 +392,7 @@ function addText(event) {
   idnum = "text_" + idnum;
   var textcontent = document.getElementById('addtext-text').value;
   var textcolor = document.getElementById('addtext-color').value;
-  var textsize = parseInt(document.getElementById('addtext-fontsize').value);
+  var textsize = $('#addtext-fontsize').slider("option","value");
   var textlh = parseInt(textsize * 1.2);
   var newtext = new fabric.IText(textcontent, {
     fontFamily: 'Helvetica',

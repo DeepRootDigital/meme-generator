@@ -19,26 +19,28 @@ $(document).ready(function(){
   });
 
 	// Open memeloader area
-	$('#meme-loader p').click(function(){
+	$('#meme-loader .click-container').click(function(){
 		if ($(this).parent().find('.submenu-container').hasClass('memeload')) {
       $(this).parent().find('.submenu-container').removeClass('memeload');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('memeload');
     }
-	});
+  });
 	// Clear the background of the meme
 	$('#clear-bg').click(function(){
 		canvas.backgroundImage = 0;
 		canvas.setBackgroundColor('rgba(0,0,0,0)', canvas.renderAll.bind(canvas));
 	});
 	// Open solid background panel and close picture background options
-	$('#bg-solid p').click(function(){
+	$('#bg-solid .click-container').click(function(){
     if ($(this).parent().find('.submenu-container').hasClass('bg')) {
       $(this).parent().find('.submenu-container').removeClass('bg');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('bg');
     }
-	});
+  });
 	// Set the background to a solid color
 	$('#bg-solid-update').click(function(){
 		canvas.backgroundImage = 0;
@@ -46,50 +48,56 @@ $(document).ready(function(){
 		canvas.setBackgroundColor(backgroundcolor, canvas.renderAll.bind(canvas));
 	});
 	// Open text editing panel
-	$('.addtextarea p').click(function(){
+	$('.addtextarea .click-container').click(function(){
 		if ($(this).parent().find('.submenu-container').hasClass('textb')) {
       $(this).parent().find('.submenu-container').removeClass('textb');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('textb');
     }
-	});
+  });
 	// Slide open the icon panel
-	$('.addimage p').click(function(){
+	$('.addimage .click-container').click(function(){
 		if ($(this).parent().find('.submenu-container').hasClass('icons')) {
       $(this).parent().find('.submenu-container').removeClass('icons');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('icons');
     }
-	});
+  });
 	// Slide open the shape panel
-	$('.addshape p').click(function(){
+	$('.addshape .click-container').click(function(){
 		if ($(this).parent().find('.submenu-container').hasClass('box')) {
       $(this).parent().find('.submenu-container').removeClass('box');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('box');
     }
-	});
+  });
   // Slide open the line panel
-  $('.addline p').click(function(){
+  $('.addline .click-container').click(function(){
     if ($(this).parent().find('.submenu-container').hasClass('lines')) {
       $(this).parent().find('.submenu-container').removeClass('lines');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('lines');
     }
   });
 	// Slide open the download options
-	$('#downloadmeme-show p').click(function(){
+	$('#downloadmeme-show .click-container').click(function(){
 		if ($(this).parent().find('.submenu-container').hasClass('dl')) {
       $(this).parent().find('.submenu-container').removeClass('dl');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('dl');
     }
-	});
+  });
   // Save meme open
-  $('#save-meme p').click(function(){
+  $('#save-meme .click-container').click(function(){
     if ($(this).parent().find('.submenu-container').hasClass('save')) {
       $(this).parent().find('.submenu-container').removeClass('save');
     } else {
+      closecontainers();
       $(this).parent().find('.submenu-container').addClass('save');
     }
   });
@@ -181,6 +189,14 @@ $(document).ready(function(){
   });
 
 });
+
+function closecontainers() {
+  $('.submenu-container').each(function(){
+    if ($(this).attr('class').split(' ').length > 1) {
+      $(this).attr('class','submenu-container');
+    }
+  });
+};
 
 // Function to save the meme that is fired on clicking button
 function saveMeme(event){
@@ -290,7 +306,7 @@ function listIcons() {
         iconTable += this.filename;
         iconTable += '</option>';
       }
-		});
+    });
 		$('#icon-choice').html(iconTable);
 	});
 };
@@ -302,21 +318,21 @@ function loadIconCanvas(event) {
   if (document.getElementById('icon-grayscale').checked) {
     grayscale = true;
   }
-	$.getJSON( '/iconlist', function( data ) {
-		var arrayPosition = data.map(function(arrayItem) { return arrayItem.filename; }).indexOf(thisIcon);
-		var thisIconObject = data[arrayPosition];
-		idnum = window.imagecount + 1;
-		idnum = "image_" + idnum;
-		fabric.Image.fromURL('icons/' + thisIconObject.filename,function(smallimage) {
+  $.getJSON( '/iconlist', function( data ) {
+    var arrayPosition = data.map(function(arrayItem) { return arrayItem.filename; }).indexOf(thisIcon);
+    var thisIconObject = data[arrayPosition];
+    idnum = window.imagecount + 1;
+    idnum = "image_" + idnum;
+    fabric.Image.fromURL('icons/' + thisIconObject.filename,function(smallimage) {
       smallimage.set('id',idnum);
       if (grayscale == true) {
         smallimage.filters.push(new fabric.Image.filters.Grayscale());
         smallimage.applyFilters(canvas.renderAll.bind(canvas));
       }
-			canvas.add(smallimage);
-		});
-		window.imagecount = window.imagecount + 1;
-	});
+      canvas.add(smallimage);
+    });
+    window.imagecount = window.imagecount + 1;
+  });
 };
 
 function dropzoneCanvas(filename) {

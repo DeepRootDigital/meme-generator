@@ -5,10 +5,11 @@ var boxcount = 0;
 var canvas = new fabric.Canvas('c');
 var memeListData = [];
 var activeObject;
+var socialtype;
 
 $(document).ready(function(){
 
-  $('#addtext-fontsize').slider({ max: 200, min:1});
+  $('#addtext-fontsize').slider({ max: 200, min:10});
   $('#addtext-fontsize').on("mouseup", function(){
     var fontsize = $('#addtext-fontsize').slider("option","value");
     $(this).parent().find('p span').text(fontsize);
@@ -160,6 +161,7 @@ $(document).ready(function(){
 			}
       $('.active-container > div').css('display','none');
       if ( activeObject.id.split("_").slice(0)[0] == "image" ) {
+        $('.active-container > .updateicons').css('display','block');
       } else if ( activeObject.id.split("_").slice(0)[0] == "text" ) {
         $('.active-container > .updatetext').css('display','block');
         $('.updatetext #updatetext-color').val(activeObject.fill);
@@ -182,6 +184,8 @@ $(document).ready(function(){
 	listImages();
 	// Populate icons to their select menu
 	listIcons();
+
+  socialLoad();
 
 	// Click trigger to save a meme
 	$('#savememe').on('click', saveMeme);
@@ -226,6 +230,7 @@ $(document).ready(function(){
   // Clear activeobject edits when selection dropped
   canvas.on("selection:cleared", function(event){
     $('.active-container > div').css('display','none');
+    $('.active-container .updatecanvas').css('display','block');
   });
 
 });
@@ -429,7 +434,7 @@ function addLine(){
     bgcolor = '#ffffff';
   }
   var idnum = "line_" + window.linecount;
-  var newShape = new fabric.Line([50,50,150,150], {
+  var newShape = new fabric.Line([50,50,150,50], {
    top: 100,
    left: 100,
    stroke: bgcolor,
@@ -520,4 +525,31 @@ function resizeCanvas(event) {
 		}
 	});
 	canvas.loadFromJSON(jsonstring,canvas.renderAll.bind(canvas));
+}
+
+function socialLoad() {
+  if (getCookie("socialtype")) {
+    socialtype = getCookie("socialtype");
+    document.cookie = "socialtype=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
+  if (socialtype == "facebook") {
+    var height = 504;
+    var width = 403;
+  } else if (socialtype == "twitter") {
+    var height = 220;
+    var width = 440;
+  }
+
+  $('.canvas-container').css('width',width+'px');
+  $('.canvas-container').css('height',height+'px');
+  $('#c').attr('width',width+'px');
+  $('#c').attr('height',height+'px');
+  $('#c').css('width',width+'px');
+  $('#c').css('height',height+'px');
+  $('.upper-canvas').attr('width',width+'px');
+  $('.upper-canvas').attr('height',height+'px');
+  $('.upper-canvas').css('width',width+'px');
+  $('.upper-canvas').css('height',height+'px');
+  canvas.width = width;
+  canvas.height = height;
 }

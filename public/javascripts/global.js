@@ -54,10 +54,10 @@ $(document).ready(function() {
 
   //HOMEPAGE ROLLOVER CONTROLS
   $('.block').on('mouseenter', function() {
-    $(this).find('.home-icon p').css({'color' : '#4c4c4c'});
+    $(this).find('.home-icon > p').css({'color' : '#4c4c4c'});
   });
   $('.block').on('mouseleave', function() {
-    $(this).find('.home-icon p').css({'color' : '#fff'});
+    $(this).find('.home-icon > p').css({'color' : '#fff'});
   });
 
 });

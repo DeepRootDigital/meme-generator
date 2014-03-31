@@ -5,7 +5,7 @@
   background-color: #4c4c4c;
   padding: 0;
   border: none;
-  padding-top:50px;
+  margin-top:50px;
   box-shadow: inset 0px 0px 72px -11px rgb(0, 0, 0);
 }
 .options-container ul {
@@ -57,7 +57,7 @@
   right: 0;
   height: 50px;
   background-color: #4c4c4c;
-  width:75%;
+  width:100%;
 }
 .settings-box ul {
   padding:0;
@@ -112,6 +112,7 @@
 }
 .mememaker-left {
   margin: 50px 0 0 0;
+  min-height:550px;
 }
 .list-icon {
   position: absolute;
@@ -171,8 +172,8 @@
 }
 #addtext-fontsize,#addshape-opacity {
   float:left;
-  width:100%;
-  margin:10px 0;
+  width:80%;
+  margin:10px 10%;
 }
 .upload-response {
   width:250px;
@@ -181,4 +182,11 @@
   right:0;
   bottom:0;
   background-color:#89bbab;
+}
+.active-container input,.active-container button {
+  width:10%;
+  height:50px;
+  padding-left:1px;
+  padding-right:1px;
+  font-size:10px;
 }

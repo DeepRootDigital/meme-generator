@@ -173,3 +173,7 @@ input[type="file"] {
 .active-container > div {
   display:none;
 }
+
+div.updatecanvas {
+  display:block;
+}

@@ -83,6 +83,7 @@ app.post('/dropzoneupload', images.dzUpload(db));
 app.post('/register', user.register(db));
 app.post('/deletememe', meme.deletememe(db));
 app.post('/deletebg', bg.deletebg(db));
+app.post('/deleteimage', images.deleteimage(db));
 
 // Admin Actions
 

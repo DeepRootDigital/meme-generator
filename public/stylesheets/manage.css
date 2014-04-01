@@ -1,0 +1,84 @@
+.management-nav {
+	width:80%;
+	height:50px;
+	max-width: 800px;
+	margin:0 auto;
+	margin-top:30px;
+}
+
+.management-nav ul {
+	list-style-type: none;
+	padding:0;
+	margin:0;
+}
+
+.management-nav li {
+	height:50px;
+	width:33%;
+	float:left;
+	text-align:center;
+	cursor:pointer;
+}
+
+.management-container{
+	width:80%;
+	margin:0 10%;
+	border:1px solid #ababab;
+	min-height:600px;
+	margin-bottom:30px;
+	float:left;
+}
+
+.management-left {
+	float:left;
+	width:30%;
+	border-right:1px solid #bababa;
+	min-height:599px;
+}
+
+.management-left ul {
+	padding:0;
+	margin:0;
+	list-style-type: none;
+	float:left;
+	width:100%;
+}
+
+.management-left li div {
+	float:left;
+	width:100%;
+	border: 1px solid #ababab;
+	border-radius:5px;
+	cursor: pointer;
+}
+
+.management-left li div p {
+	width:80%;
+	float:left;
+	margin:0;
+	padding:0;
+	height:100%;
+	padding-left: 10%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.management-left li div button {
+display:none;
+width: 26px;
+height:26px;
+margin: 0;
+padding: 0;
+border: 0;
+background: 0;
+background-image: url('images/ui-icons_222222_256x240.png');
+background-size:320px 300px;
+background-position: -218px -118px;
+margin-top: 6px;
+}
+
+.management-right {
+	float:left;
+	width:70%;
+	min-height:600px;
+}

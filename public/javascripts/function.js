@@ -323,10 +323,12 @@ function listImages() {
 	var imageTable = '';
 	$.getJSON( '/imagelist', function( data) {
 		$.each(data, function(){
-			imageTable += '<option>';
-			imageTable += this.filename;
-			imageTable += '</option>';
-		});
+      if (this.username == getCookie('id')) {
+       imageTable += '<option>';
+       imageTable += this.filename;
+       imageTable += '</option>';
+      }
+   });
 		$('#background-choice').html(imageTable);
 	});
 };
@@ -538,6 +540,9 @@ function socialLoad() {
   } else if (socialtype == "twitter") {
     var height = 220;
     var width = 440;
+  } else {
+    var height = 651;
+    var width = 630;
   }
 
   $('.canvas-container').css('width',width+'px');

@@ -31,7 +31,7 @@ exports.bglist = function(db) {
 
  exports.deletebg = function(db) {
    return function(req, res) {
-     var bgToDelete = req.params.id;
+     var bgToDelete = req.body.id;
      db.collection('bglist').removeById(bgToDelete, function(err, result) {
        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
      });

@@ -80,3 +80,14 @@ exports.iconList = function(db) {
      });
    }
  };
+
+ /* POST to DELETE */
+
+  exports.deleteimage = function(db) {
+   return function(req, res) {
+     var bgToDelete = req.body.id;
+     db.collection('iconlist').removeById(bgToDelete, function(err, result) {
+       res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
+     });
+   }
+ };

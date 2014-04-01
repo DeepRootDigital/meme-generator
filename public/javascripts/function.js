@@ -160,9 +160,9 @@ $(document).ready(function(){
 				canvas.remove(activeObject);
 			}
       $('.active-container > div').css('display','none');
-      if ( activeObject.id.split("_").slice(0)[0] == "image" ) {
+      if ( activeObject._element.className == "canvas-img" ) {
         $('.active-container > .updateicons').css('display','block');
-      } else if ( activeObject.id.split("_").slice(0)[0] == "text" ) {
+      } else if ( activeObject.text ) {
         $('.active-container > .updatetext').css('display','block');
         $('.updatetext #updatetext-color').val(activeObject.fill);
         $('.updatetext #updatetext-fontsize').val(activeObject.fontSize);
@@ -339,7 +339,7 @@ function loadImageCanvas(event) {
 	$.getJSON( '/imagelist', function( data ) {
 		var arrayPosition = data.map(function(arrayItem) { return arrayItem.filename; }).indexOf(thisImage);
 		var thisImageObject = data[arrayPosition];
-		canvas.setBackgroundImage( 'bg/' + thisImageObject.filename, canvas.renderAll.bind(canvas) );
+		canvas.setBackgroundImage( 'bg/' + thisImageObject.savename, canvas.renderAll.bind(canvas) );
 	});
 };
 
@@ -370,7 +370,7 @@ function loadIconCanvas(event) {
     var thisIconObject = data[arrayPosition];
     idnum = window.imagecount + 1;
     idnum = "image_" + idnum;
-    fabric.Image.fromURL('icons/' + thisIconObject.filename,function(smallimage) {
+    fabric.Image.fromURL('icons/' + thisIconObject.savename,function(smallimage) {
       smallimage.set('id',idnum);
       if (grayscale == true) {
         smallimage.filters.push(new fabric.Image.filters.Grayscale());

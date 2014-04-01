@@ -21,6 +21,7 @@ function populateMemeTable() {
       }
     });
     // Insert into the meme loading selector
+    $('.management-left > p').text('My Memes');
     $('.management-left ul').html(tableContent);
     $('.delete-icon').on("click",deleteMemeSingle);
     $('.management-left ul li div').on('click',showSingleMeme);
@@ -55,6 +56,61 @@ function showSingleMeme() {
   $('.delete-icon').css('display','none');
   $(this).find('.delete-icon').css('display','block');
   // Show Preview
+  var ident = $(this).attr('class');
+  $.getJSON('/memelist', function(data) {
+    var memen;
+    var memeinfo;
+    $.each(data, function() {
+      if (this._id == ident) {
+        memen = this.memename;
+        memeinfo = this.json;
+      }
+    });
+    $('.management-right-name h2').text(memen);
+    $('.management-right-preview').html('<canvas id="c" width="600px" height="1000px"></canvas>');
+    var canvas = new fabric.Canvas('c');
+    canvas.loadFromJSON(memeinfo,canvas.renderAll.bind(canvas));
+    var dataURL = canvas.toDataURL({format: "png"});
+    $('.management-right-preview').html('<img src="' + dataURL + '" alt="Preview Image">');
+  });
+}
+
+function showSingleIcon() {
+  $('.delete-icon').css('display','none');
+  $(this).find('.delete-icon').css('display','block');
+  // Show Preview
+  var ident = $(this).attr('class');
+  $.getJSON('/iconlist', function(data) {
+    var filen;
+    var fileloc;
+    $.each(data, function() {
+      if (this._id == ident) {
+        filen = this.filename;
+        fileloc = this.savename;
+      }
+    });
+    $('.management-right-name h2').text(filen);
+    $('.management-right-preview').html("<img src='icons/" + fileloc + "' alt='image preview'>");
+  });
+}
+
+function showSingleImage() {
+  $('.delete-icon').css('display','none');
+  $(this).find('.delete-icon').css('display','block');
+  // Show Preview
+  var ident = $(this).attr('class');
+  $.getJSON('/imagelist', function(data) {
+    var filen;
+    var fileloc;
+    $.each(data, function() {
+      if (this._id == ident) {
+        filen = this.filename;
+        fileloc = this.savename;
+      }
+    });
+    $('.management-right-name h2').text(filen);
+    $('.management-right-preview').html("<img src='bg/" + fileloc + "' alt='image preview'>");
+  });
 }
 
 function populateImageTable() {
@@ -71,8 +127,9 @@ function populateImageTable() {
       }
     });
     $('.management-left ul').html(tableContent);
+    $('.management-left > p').text('My Images');
     $('.delete-icon').on("click",deleteIconSingle);
-    $('.management-left ul li div').on('click',showSingleMeme);
+    $('.management-left ul li div').on('click',showSingleIcon);
   });
 };
 
@@ -114,8 +171,9 @@ function populateBgTable() {
       }
     });
     $('.management-left ul').html(tableContent);
+    $('.management-left > p').text('My Backgrounds');
     $('.delete-icon').on("click",deleteImageSingle);
-    $('.management-left ul li div').on('click',showSingleMeme);
+    $('.management-left ul li div').on('click',showSingleImage);
   });
 };
 

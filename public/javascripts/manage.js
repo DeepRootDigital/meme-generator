@@ -60,18 +60,24 @@ function showSingleMeme() {
   $.getJSON('/memelist', function(data) {
     var memen;
     var memeinfo;
+    var height;
+    var width;
     $.each(data, function() {
       if (this._id == ident) {
         memen = this.memename;
         memeinfo = this.json;
+        height = this.height;
+        width = this.width;
       }
     });
     $('.management-right-name h2').text(memen);
-    $('.management-right-preview').html('<canvas id="c" width="600px" height="1000px"></canvas>');
+    $('.management-right-preview').html('<canvas id="c" width="' + width + 'px" height="' + height + 'px"></canvas>');
     var canvas = new fabric.Canvas('c');
-    canvas.loadFromJSON(memeinfo,canvas.renderAll.bind(canvas));
-    var dataURL = canvas.toDataURL({format: "png"});
-    $('.management-right-preview').html('<img src="' + dataURL + '" alt="Preview Image">');
+    canvas.loadFromJSON(memeinfo,function(){
+        canvas.renderAll.bind(canvas);
+        var dataURL = canvas.toDataURL({format: "png"});
+        $('.management-right-preview').html('<img src="' + dataURL + '" alt="Preview Image">');
+    });
   });
 }
 

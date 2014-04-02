@@ -160,17 +160,17 @@ $(document).ready(function(){
 				canvas.remove(activeObject);
 			}
       $('.active-container > div').css('display','none');
-      if ( activeObject._element.className == "canvas-img" ) {
-        $('.active-container > .updateicons').css('display','block');
-      } else if ( activeObject.text ) {
+      if ( activeObject.get('type') == "i-text" ) {
         $('.active-container > .updatetext').css('display','block');
         $('.updatetext #updatetext-color').val(activeObject.fill);
         $('.updatetext #updatetext-fontsize').val(activeObject.fontSize);
-      } else if ( activeObject.id.split("_").slice(0)[0] == "box" ) {
+      } else if ( activeObject.get('type') == "image" ) {
+        $('.active-container > .updateicons').css('display','block');
+      } else if ( activeObject.get('type') == "rect" ) {
         $('.active-container > .updatebox').css('display','block');
         $('.updatebox #updatebox-color').val(activeObject.fill);
         $('.updatebox #updatebox-opacity').val(activeObject.opacity);
-      } else if ( activeObject.id.split("_").slice(0)[0] == "line" ) {
+      } else if ( activeObject.get('type') == "line" ) {
         $('.active-container > .updateline').css('display','block');
         $('.updateline #updateline-color').val(activeObject.stroke);
         $('.updateline #updateline-lw').val(activeObject.strokeWidth);
@@ -252,6 +252,8 @@ function saveMeme(event){
 		alert('Please fill in the name.');
 		return false;
 	} else {
+    var canvasheight = $('.canvas-container').css('height');
+    var canvaswidth = $('.canvas-container').css('width');
 		// Get the json string for the current canvas
 		var jsonstring = JSON.stringify(canvas);
 		// Get the name entered
@@ -262,7 +264,9 @@ function saveMeme(event){
 		var newMeme = {
 			'memename' : memename,
 			'json' : jsonstring,
-      'username' : usern
+      'username' : usern,
+      'height' : canvasheight,
+      'width' : canvaswidth
     }
 		// Execute ajax request
 		$.ajax({

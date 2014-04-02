@@ -85,6 +85,9 @@ app.post('/deletememe', meme.deletememe(db));
 app.post('/deletebg', bg.deletebg(db));
 app.post('/deleteimage', images.deleteimage(db));
 
+// Update
+app.post('/updatememe', meme.updateMeme(db));
+
 // Admin Actions
 
 app.post('/updateuserlevel', admin.changeuser(db));

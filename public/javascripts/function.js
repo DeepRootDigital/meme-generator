@@ -158,6 +158,14 @@ function saveMeme(event){
             $('#memename').val('');
             // Update list of memes
             populateTable();
+            $('.upload-response p').text('Meme Saved');
+            $('.upload-response').animate({'height':'60px'},function(){
+              setTimeout(function(){
+                $('.upload-response').animate({'height':'0px'},300,function(){
+                  $('.upload-response p').text('File Uploaded');
+                });
+              },1500);
+            });
           } else {
             // Throw error if there is one
             alert('Error: ' + response.msg);
@@ -195,6 +203,14 @@ function saveMeme(event){
               $('#memename').val('');
               // Update list of memes
               populateTable();
+              $('.upload-response p').text('Meme Saved');
+              $('.upload-response').animate({'height':'60px'},function(){
+                setTimeout(function(){
+                  $('.upload-response').animate({'height':'0px'},300,function(){
+                    $('.upload-response p').text('File Uploaded');
+                  });
+                },1500);
+              });
             } else {
               // Throw error if there is one
               alert('Error: ' + response.msg);

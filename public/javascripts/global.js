@@ -63,23 +63,28 @@ $(document).ready(function() {
 });
 
 function loggedinUser() {
-	var loggeduser = getCookie("id");
-	$('#cookied-name').text(loggeduser);
+  if (getCookie("id")) {
+    var loggeduser = getCookie("id");
+    $('#cookied-name').text(loggeduser);
+  } else {
+    // Redirect to frontpage if logged out
+    window.location = "/";
+  }
 }
 
 function ifAdmin() {
-	var userlvl;
-	var loggeduser = getCookie("id");
-	$.getJSON( '/userlist', function( data ) {
-    $.each(data, function(){
-      if (loggeduser == this.username) {
-        userlvl = this.userlevel;
-      }
-    });
-    if (userlvl == "Admin") {
-    	$('.main-menu-container > ul').prepend('<a href="/admin"><li>Admin Panel</li></a>');
+ var userlvl;
+ var loggeduser = getCookie("id");
+ $.getJSON( '/userlist', function( data ) {
+  $.each(data, function(){
+    if (loggeduser == this.username) {
+      userlvl = this.userlevel;
     }
   });
+  if (userlvl == "Admin") {
+   $('.main-menu-container > ul').prepend('<a href="/admin"><li>Admin Panel</li></a>');
+ }
+});
 }
 
 /* Get the cookie info */

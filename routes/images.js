@@ -30,11 +30,13 @@ exports.iconList = function(db) {
      var usern = req.headers.un;
      fs.readFile(oldPath, function (err, data) {
        var fileName = req.files.file.originalFilename;
+       var savename = usern+"_"+fileName;
        var fileObj = {
         'filename' : fileName,
-        'username' : usern
+        'username' : usern,
+        'savename' : savename
        }
-       fs.rename(oldPath, 'public/bg/' + fileName, function (err) {
+       fs.rename(oldPath, 'public/bg/' + savename, function (err) {
         db.collection('imglist').insert(fileObj, function(err, result){
          res.redirect('back');
         });
@@ -49,11 +51,13 @@ exports.iconList = function(db) {
      var usern = req.headers.un;
      fs.readFile(oldPath, function (err, data) {
        var fileName = req.files.file.originalFilename;
+       var savename = usern + "_" + fileName;
        var fileObj = {
         'filename' : fileName,
-        'username' : usern
+        'username' : usern,
+        'savename' : savename
        }
-       fs.rename(oldPath, 'public/icons/' + fileName, function (err) {
+       fs.rename(oldPath, 'public/icons/' + savename, function (err) {
         db.collection('iconlist').insert(fileObj, function(err, result){
           res.end();
         });

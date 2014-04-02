@@ -25,6 +25,18 @@ exports.memelist = function(db) {
    }
  };
 
+ exports.updateMeme = function(db) {
+  return function(req, res) {
+    var usern = req.body.username;
+    var mmn = req.body.memename;
+    db.collection('memelist').update({"username" : usern, "memename" : mmn }, req.body, function(err, result){
+      res.send(
+        (err === null) ? { msg: ''} : { msg: err }
+      );
+    });
+  }
+ }
+
 /*
  * DELETE to deletememe
  */

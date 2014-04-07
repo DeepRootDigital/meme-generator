@@ -178,14 +178,20 @@ $('#signin-user').click(function(event){
 		$('#password').removeClass('invalid');
     // Look for username in database
     $.getJSON( '/userlist', function( data ) {
-    	var arrayPosition = data.map(function(arrayItem) { return arrayItem.username; }).indexOf(userName);
+    	var emailorun = userName.split("@").length;
+    	if (emailorun > 1) {
+    		var arrayPosition = data.map(function(arrayItem) { return arrayItem.email; }).indexOf(userName);
+    	} else {
+    		var arrayPosition = data.map(function(arrayItem) { return arrayItem.username; }).indexOf(userName);
+    	}
+    	
     	var thisUserObject = data[arrayPosition];
 			// If there is such a username in the system, check password
 			if (thisUserObject) {
 				var hashpw = CryptoJS.SHA3(password).toString();
 				if (thisUserObject.password == hashpw) {
 					// Set cookie and redirect to home if the combo is correct
-					var hashname = userName;
+					var hashname = thisUserObject.username;
 					document.cookie = "id="+hashname;
 					window.location = "/home";
 				} else {

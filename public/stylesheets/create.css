@@ -1,3 +1,55 @@
+#addshape-lw::-webkit-input-placeholder {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* Firefox 18- */
+#addshape-lw:-moz-placeholder {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* Firefox 19+ */
+#addshape-lw::-moz-placeholder {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+#addshape-lw:-ms-input-placeholder {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.updatecanvas input[type=text]::-webkit-input-placeholder {
+  color: #4c4c4c;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* Firefox 18- */
+.updatecanvas input[type=text]:-moz-placeholder {
+  color: #4c4c4c;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* Firefox 19+ */
+.updatecanvas input[type=text]::-moz-placeholder {
+  color: #4c4c4c;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.updatecanvas input[type=text]:-ms-input-placeholder {
+  color: #4c4c4c;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 .options-container {
   width:25%;
   position:absolute;
@@ -120,7 +172,7 @@
   top: 14px;
 }
 .submenu-container.bg {
-  height:285px;
+  min-height:400px;
   width:285px;
   padding:20px;
 }
@@ -135,7 +187,7 @@
   padding:20px;
 }
 .submenu-container.icons {
-  height:285px;
+  height:315px;
   width:285px;
   padding:20px;
 }
@@ -175,6 +227,10 @@
   width:80%;
   margin:10px 10%;
 }
+#addtext-fontsize {
+  /*margin: 0 auto 10px auto !important;*/
+  display: block !important;
+}
 .upload-response {
   width:250px;
   height:0px;
@@ -189,4 +245,213 @@
   padding-left:1px;
   padding-right:1px;
   font-size:10px;
+}
+.test {
+  width: 250px;
+}
+.full {
+  width: 100% !important;
+  margin: 0 0 10px 0;
+}
+.grayscale {
+  width: 25px;
+  position: absolute;
+  top: 280px;
+  left: 140px;
+}
+.middle {
+  margin: 0 auto;
+  display: block;
+  float: none;
+}
+.test .color {
+  width: 100%;
+  border: none;
+  background-color: rgb(43, 43, 43) !important;
+  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22) !important;
+  color: rgb(255, 255, 255) !important;
+  height: 40px;
+  padding: 7px 0 0 7px;
+  border-radius: 4px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.test #bg-solid-update {
+  margin: 10px 0 0 0;
+}
+.test textarea {
+  padding: 13px 0 0 12px;
+  border: none;
+  background-color: rgb(43, 43, 43);
+  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22); 
+  text-transform: uppercase;
+}
+.test #addtext-color {
+  height: 40px;
+  width: 100%;
+  margin: 10px auto;
+  display: block;
+  border: none;
+  background-color: rgb(43, 43, 43);
+  font-size: 16px;
+  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22);
+  text-transform: uppercase;
+}
+.test #addtext-add {
+  height: auto;
+  width: 150px;
+  margin: 60px 0 0 40px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+}
+.test #addtext-add:active {
+  margin: 62px 0 0 42px;
+  box-shadow: none;
+}
+.buttons {
+  height: auto;
+  /*width: 150px;*/
+  margin: 0px 24px 0 0px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47); 
+}
+.buttons:active {
+  margin: 2px 0 0 2px;
+  box-shadow: none;
+}
+.background button:last-of-type {
+  margin: 0 0 0 0;
+}
+.background #bg-solid-update {
+  margin: 20px 2px 0 70px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+}
+.background #bg-solid-update:active {
+  margin: 20px 0 0 72px;
+  box-shadow: none;
+}
+.background #background-choice-submit {
+  display: block;
+  float: none;
+  margin: 10px 0 0 70px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+}
+.background #background-choice-submit:active {
+  margin: 14px 0 0 72px;
+  box-shadow: none;
+}
+.background #clear-bg {
+  display: block;
+  float: none;
+  margin: 10px 0 0 70px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+}
+.background #clear-bg:active {
+  margin: 10px 0 0 72px;
+  box-shadow: none;
+}
+.background button {
+  display: inline-block;
+}
+.add-box {
+  margin: 0 0 0 0 !important;
+}
+.font #addtext-fontsize {
+  margin: 0;
+}
+.lines #addshape-lw {
+  margin: 0 0 20px 0;
+  width: 100%;
+  border: none;
+  background-color: rgb(43, 43, 43) !important;
+  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22) !important;
+  color: rgb(255, 255, 255) !important;
+  height: 40px;
+  padding: 7px 0 0 7px;
+  border-radius: 4px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.lines button {
+  margin: 20px 0px 20px 62px !important;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+  transition: all 0.1s linear 0s;
+  background-color: rgb(185, 230, 216);
+  border: none;
+  border-radius: 5px;
+  color: rgb(76, 76, 76);
+  padding: 10px;
+  box-shadow: 2px 2px 1px 2px rgb(37, 52, 47);
+}
+.lines button:active {
+  margin: 22px 0 0 64px !important;
+  box-shadow: none;
+}
+.box p {
+  margin: 20px 0 10px 0 !important;
+}
+.box button {
+  margin: 20px 0 0 60px;
+}
+.box button:active {
+  margin: 22px 0 0 62px;
+}
+.icons #icon-choice-submit {
+  margin: 15px 0 0 70px;
+}
+.icons #icon-choice-submit:active {
+  margin: 17px 0 0 72px;
+}
+.icons #icon-choice {
+  width: 100%;
+}
+.icons p {
+  margin: 0 !important;
+  display: block !important;
+  position: absolute;
+  top: 242px;
+  z-index: -9;
+  left: 87px;
+}
+.updatecanvas input[type=text] {
+  color: #4c4c4c;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.updatecanvas button {
+  font-size: 16px;
+  color: #4c4c4c;
 }

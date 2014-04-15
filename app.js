@@ -2,16 +2,17 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var meme = require('./routes/meme');
-var admin = require('./routes/admin');
-var bg = require('./routes/bg');
-var images = require('./routes/images');
-var http = require('http');
-var path = require('path');
-var fs = require('fs');
+ var express = require('express');
+ var nodemailer = require('nodemailer');
+ var routes = require('./routes');
+ var user = require('./routes/user');
+ var meme = require('./routes/meme');
+ var admin = require('./routes/admin');
+ var bg = require('./routes/bg');
+ var images = require('./routes/images');
+ var http = require('http');
+ var path = require('path');
+ var fs = require('fs');
 
 // Database
 
@@ -37,6 +38,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+// Mailer function
+
+var smtpTransport = nodemailer.createTransport("SMTP",{
+  service: "Gmail",
+  auth: {
+    user: "colpanius@gmail.com",
+    pass: "iamjessica1"
+  }
+});
 
 /* Define all the pages */
 
@@ -92,6 +103,29 @@ app.post('/updatememe', meme.updateMeme(db));
 
 app.post('/updateuserlevel', admin.changeuser(db));
 app.post('/adminlog', admin.adminlog(db));
+
+// Main Actions
+
+app.post('/email-recovery', function(req,res,next){
+  var mailOptions = {
+    from: "Do Not Reply <donotreply@businesslabkit.com>", // sender address
+    to: req.body.email, // list of receivers
+    subject: "Labkit Password Recovery", // Subject line
+    text: "Hello, please use the link below to change your password: http://www.labkit.com/changepw?id=" + req.body.username, // plaintext body
+    html: "<b>Hello, please use the link below to change your password: <br /><a href='http://www.labkit.com/changepw?id=" + req.body.username + "'>Click Here</a></b>" // html body
+  }
+  smtpTransport.sendMail(mailOptions, function(error, response){
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Message sent: " + response.message);
+      return;
+    }
+
+    // if you don't want to use this transport object anymore, uncomment following line
+    // smtpTransport.close(); // shut down the connection pool, no more messages
+  });
+});
 
 /* End RESTful actions */
 var port = process.env.PORT || 8080;

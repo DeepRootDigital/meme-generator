@@ -1,3 +1,5 @@
+var inputValues = new Array();
+
 $(document).ready(function(){
 	// Check if logged in
 	if (getCookie('id')) {
@@ -13,6 +15,154 @@ $(document).ready(function(){
 		});
 	}
 
+	$('#arrow').click(function(event){
+		event.preventDefault();
+		var form = $('.form');
+		var label = $('label');
+		var progress = $('.progress-bar');
+		
+		if ($('.arrow').parent().find('#input').val() || $('.arrow').parent().find('#password').val()) {
+			if ($('.name').text() == 'Name') {
+				$.getJSON( '/userlist', function( data ) {
+					var inuse = 1;
+					$.each(data, function(){
+						if ($('#input').val() == this.username){
+							inuse = 0;
+						}
+					});
+					if (inuse == 0) {
+						$('.error-box').text('That username is already in use.');
+						$('.error-box').css('display','block');
+					} else {
+						$('.email').text('Email');
+						$('.email').animate({'top' : '-30px'});
+						$('.name').animate({'top' : '-30px'});
+						$('.progress-bar').css({'width' : '138px'});
+						$('.name').text('');
+						if ($('.arrow').parent().find('#input').val()) {
+							inputValues.push($('#input').val());
+						} else {
+							inputValues.push($('#password').val());
+						}
+						var counter = $('.counter span').text();
+						var newCount = parseInt(counter) + 1;
+						$('.counter span').text(newCount);
+						$('.input').val('');
+						$('.error-box').text('');
+						$('.error-box').css('display','none');
+					}
+				});
+			}
+			else if ($('.email').text() == 'Email') {
+				if (!isValidEmailAddress($('#input').val())) {
+					$('.error-box').text('Please enter a valid email address.');
+					$('.error-box').css('display','block');
+				} else {
+					$.getJSON( '/userlist', function( data ) {
+						var inuse = 1;
+						$.each(data, function() {
+							if ($('#input').val() == this.email) {
+								inuse = 0;
+							}
+						});
+						if (inuse == 0) {
+							$('.error-box').text('That email is already in use.');
+							$('.error-box').css('display','block');
+						} else {
+							$('.info').text('Password');
+							$('.info').animate({'top' : '-60px'}, 400);
+							$('.email').animate({'top' : '-60px'});
+							$('.progress-bar').css({'width' : '277px'});
+							$('.email').text('');
+							$('#input').hide();
+							$('#password').show();
+							$('#password').focus();
+							if ($('.arrow').parent().find('#input').val()) {
+								inputValues.push($('#input').val());
+							} else {
+								inputValues.push($('#password').val());
+							}
+							var counter = $('.counter span').text();
+							var newCount = parseInt(counter) + 1;
+							$('.counter span').text(newCount);
+							$('.input').val('');
+							$('.error-box').text('');
+							$('.error-box').css('display','none');
+						}
+					});
+}
+} 
+else if ($('.info').text() == 'Password') {
+	$('.address').text('Retype Password');
+	$('.address').animate({'top' : '-90px'}, 400);
+	$('.info').animate({'top' : '-90px'});
+	$('.progress-bar').css({'width' : '415px'});
+	$('.info').text('');
+	if ($('.arrow').parent().find('#input').val()) {
+		inputValues.push($('#input').val());
+	} else {
+		inputValues.push($('#password').val());
+	}
+	var counter = $('.counter span').text();
+	var newCount = parseInt(counter) + 1;
+	$('.counter span').text(newCount);
+	$('.input').val('');
+	$('.error-box').text('');
+	$('.error-box').css('display','none');
+} 
+else if ($(label).text() == 'Retype Password') {
+	if ($('#password').val() != inputValues[2]) {
+		$('.error-box').text('Make sure your password matches your previous one.');
+		$('.error-box').css('display','block');
+	} else {
+		$('.progress-bar').css({'width' : '500px'});
+		if ($('.arrow').parent().find('#input').val()) {
+			inputValues.push($('#input').val());
+		} else {
+			inputValues.push($('#password').val());
+		}
+		var counter = $('.counter span').text();
+		var newCount = parseInt(counter) + 1;
+		$('.counter span').text(newCount);
+		$('.error-box').text('');
+		$('.error-box').css('display','none');
+					// Hash the password for security
+					password = CryptoJS.SHA3(inputValues[2]).toString();
+				  // Create the object to be inserted into the database
+				  var userdata = {
+				  	'username' : inputValues[0],
+				  	'email' : inputValues[1],
+				  	'password' : password,
+				  	'userlevel' : "one"
+				  };
+					// Ajax request to insert into the database
+					$.ajax({
+						type: 'POST',
+						data: userdata,
+						url: '/register',
+						dataType: 'JSON'
+					})
+					.done(function(response){
+						// Analyze response message from server
+						if (response.msg === '') {
+							// If successful, set cookie and redirect
+							var hashname = inputValues[0];
+							document.cookie = "id="+hashname;
+							window.location = "/home";
+						} else {
+	          	// Throw error if there is one
+	          	alert('Error: ' + response.msg);
+	          }
+	        });
+				}
+			}
+		} else {
+			$('.error-box').text('Please enter something.');
+			$('.error-box').css('display','block');
+		}
+	});
+
+/*
 	// Script to register a new user
 	$('#signup-register').click(function(event){
 		event.preventDefault();
@@ -68,7 +218,7 @@ $(document).ready(function(){
 				}			
 			}
 		});
-	});
+});
 
 $('#username').on('keyup',function(){
 		// Set validity and get username inputted
@@ -84,21 +234,21 @@ $('#username').on('keyup',function(){
 					valid = 0;
 				}
 			});
-			/* Give real time validation */
+			// Give real time validation
 			if (valid == 0) {
-				/* Give 'in use' message and put red outline */
+				// Give 'in use' message and put red outline
 				$('#signup-register').prop("disabled", true);
 				$('#username').addClass('invalid');
 				$('#username').removeClass('valid');
 				$('.error-box').html('<p>That username is in use.</p>');
 			} else if (notEmpty == 0) {
-				/* Give 'fill out' message and put red outline */
+				// Give 'fill out' message and put red outline
 				$('#signup-register').prop("disabled", true);
 				$('#username').addClass('invalid');
 				$('#username').removeClass('valid');
 				$('.error-box').html('<p>Please enter a username.</p>');
 			} else {
-				/* Get rid of error messages if they are there */
+				// Get rid of error messages if they are there
 				$('#signup-register').prop("disabled", false);
 				$('#username').removeClass('invalid');
 				$('#username').addClass('valid');
@@ -121,21 +271,21 @@ $('#email').on('keyup',function(){
 			if (!isValidEmailAddress(email)) {
 				valid = 0;
 			}
-			/* Give real time validation */
+			// Give real time validation 
 			if (valid == 0) {
-				/* Throw invalid email warning */
+				// Throw invalid email warning
 				$('#signup-register').prop("disabled", true);
 				$('#email').addClass('invalid');
 				$('#email').removeClass('valid');
 				$('.error-box').html('<p>That email address is not valid.</p>');
 			} else if (avail == 0) {
-				/* Give 'in use' message and put red outline */
+				// Give 'in use' message and put red outline
 				$('#signup-register').prop("disabled", true);
 				$('#email').addClass('invalid');
 				$('#email').removeClass('valid');
 				$('.error-box').html('<p>That email is in use.</p>');
 			} else {
-				/* Get rid of error messages if they are there */
+				// Get rid of error messages if they are there
 				$('#signup-register').prop("disabled", false);
 				$('#email').removeClass('invalid');
 				$('#email').addClass('valid');
@@ -152,21 +302,22 @@ $('#repassword').on('keyup',function(){
 		if (repw == pw) {
 			valid = 1;
 		}
-		/* Give real time validation */
+		// Give real time validation
 		if (valid == 0) {
-			/* Give 'in use' message and put red outline */
+			// Give 'in use' message and put red outline
 			$('#signup-register').prop("disabled", true);
 			$('#repassword').addClass('invalid');
 			$('#repassword').removeClass('valid');
 			$('.error-box').html('<p>The passwords do not match.</p>');
 		} else {
-			/* Get rid of error messages if they are there */
+			// Get rid of error messages if they are there
 			$('#signup-register').prop("disabled", false);
 			$('#repassword').removeClass('invalid');
 			$('#repassword').addClass('valid');
 			$('.error-box').html('');
 		}
 	});
+*/
 
 $('#signin-user').click(function(event){
 	event.preventDefault();
@@ -205,7 +356,46 @@ $('#signin-user').click(function(event){
 				$('#username-signin').addClass('invalid');
 			}
 		});
-  });
+});
+
+$('#recover-password').click(function(){
+	if ($('.password-recovery').css('display') == "none") {
+		$('.password-recovery').slideDown(300);	
+	} else {
+		$('.password-recovery').slideUp(300);
+	}
+});
+
+$('#recover-my-pw').on("click",function(event){
+	event.preventDefault();
+	var userName = "";
+	$.getJSON( '/userlist', function( data ) {
+		$.each(data, function() {
+			if ($('#email-recovery').val() == this.email) {
+				userName = this.username;
+				console.log(userName);
+			}
+		});
+		if (userName == "") {
+			alert('That email is not in our records');
+		} else {
+			userName = CryptoJS.enc.Utf16.parse(userName);
+			userName = userName.toString();
+			console.log(userName);
+			var thedata = {'email':$('#email-recovery').val(), 'username':userName};
+			$.ajax({
+				type: 'POST',
+				data: thedata,
+				url: '/email-recovery',
+				dataType: 'JSON'
+			})
+			.done(function(response){
+				window.location = "/";
+			});
+		}
+	});
+});
+
 });
 
 function isValidEmailAddress(emailAddress) {

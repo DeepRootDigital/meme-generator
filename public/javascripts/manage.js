@@ -4,6 +4,8 @@ $(document).ready(function(){
   $('#viewimages').on('click',populateImageTable);
   $('#viewbgs').on('click',populateBgTable);
 
+  populateMemeTable();
+
 });
 
 function populateMemeTable() {
@@ -45,6 +47,9 @@ function deleteMemeSingle(event) {
     if (response.msg === '') {
       // Update list of memes
       populateMemeTable();
+      $('.management-right-name h2').text('');
+      $('.management-right-edit button').text('');
+      $('.management-right-preview').html('');
     } else {
       // Throw error if there is one
       alert('Error: ' + response.msg);
@@ -71,14 +76,38 @@ function showSingleMeme() {
       }
     });
     $('.management-right-name h2').text(memen);
+    $('.management-right-edit').html('<button>'+memen+'</button>');
     $('.management-right-preview').html('<canvas id="c" width="' + width + 'px" height="' + height + 'px"></canvas>');
     var canvas = new fabric.Canvas('c');
     canvas.loadFromJSON(memeinfo,function(){
-        canvas.renderAll.bind(canvas);
-        var dataURL = canvas.toDataURL({format: "png"});
-        $('.management-right-preview').html('<img src="' + dataURL + '" alt="Preview Image">');
+        applyImageFilters(canvas);
     });
+    templateClick();
   });
+}
+
+function templateClick() {
+  $('.management-right-edit button').on('click',function(){
+    var templatename = $(this).text();
+    document.cookie = "templatename="+templatename;
+    window.location = "/create";
+  });
+}
+
+function applyImageFilters(canvas) {
+  canvas.forEachObject(function(obj) {
+    if(obj.type === 'image' && obj.filters.length) {
+      obj.applyFilters(function(){
+        obj.canvas.renderAll();
+      });
+    } else {
+      canvas.renderAll();
+    }
+  });
+  setTimeout(function(){
+    var dataURL = canvas.toDataURL({format: "png"});
+    $('.management-right-preview').html('<img src="' + dataURL + '" alt="Preview Image">');
+  },1000);
 }
 
 function showSingleIcon() {

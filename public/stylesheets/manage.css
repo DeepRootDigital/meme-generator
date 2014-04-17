@@ -83,3 +83,13 @@ margin-top: 6px;
 	min-height:600px;
 	text-align:center;
 }
+
+.management-right > * {
+	float:left;
+	width:100%;
+}
+
+.management-right #c {
+	margin-left:auto;
+	margin-right:auto;
+}

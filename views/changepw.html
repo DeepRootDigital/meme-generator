@@ -18,50 +18,34 @@
   <!--[if lt IE 8]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-  <div id="test" class="header-container">
-    <div class="center">
-      <a href="" id="logolink"><h1 class="title">Meme<span>GEN</span></h1></a>
-        <a href="/signup" class="login">Sign Up</a>
-      <div class="clear"></div>
+    <div id="test" class="header-container">
+      <div class="center">
+        <a href="" id="logolink"><h1 class="title">Meme<span>GEN</span></h1></a>
+        <a href="/login" class="login">Login</a>
+        <div class="clear"></div>
+      </div>
     </div>
-  </div>
     <div class="content-container">
       <div class="sign-upin">
-        <h2>Sign In</h2>
+        <h2>Password Change</h2>
         <form action="" method="POST">
-          <input type="text" name="username" id="username-signin" class="form-control" placeholder="username">
-          <input type="password" name="password" id="password" class="form-control" placeholder="password">
-          <input type="submit" id="signin-user">
+          <input type="password" name="password" id="password" class="form-control" placeholder="new password">
+          <input type="password" name="repassword" id="repassword" class="form-control" placeholder="new password again">
+          <input type="submit" id="reset-change-pw">
         </form>
         <div class="error-box">
         </div>
-        <div class="already">
-          <p>Don't have an account?</p>
-          <a href="/signup">Sign up now</a>
-        </div>
-        <!--
-        <div class="already">
-          <p>Forgot your password?</p>
-          <button id="recover-password">Recover your account</button>
-          <div class="password-recovery">
-            <form>
-              <input type="text" id="email-recovery" class="form-control" placeholder="Your Email">
-              <input type="submit" id="recover-my-pw">
-            </form>
-          </div>
-        </div>
-        -->
       </div>
     </div>
     <div id="error-box">
-    <div class="error-tab">
-      <p>Feedback</p>
+      <div class="error-tab">
+        <p>Feedback</p>
+      </div>
+      <form>
+        <textarea type="text" name="error-message" class="error-message form-control" placeholder="Message"></textarea>
+        <input type="submit" id="error-submit">
+      </form>
     </div>
-    <form>
-      <textarea type="text" name="error-message" class="error-message form-control" placeholder="Message"></textarea>
-      <input type="submit" id="error-submit">
-    </form>
-  </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core-min.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-utf16-min.js"></script>
@@ -69,6 +53,6 @@
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
     <script src="javascripts/signupin.js"></script>
     <script src="javascripts/global-front.js"></script>
-  <script type="text/javascript" src="javascripts/error.js"></script>
+    <script type="text/javascript" src="javascripts/error.js"></script>
   </body>
   </html>

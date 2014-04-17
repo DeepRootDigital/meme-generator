@@ -84,6 +84,7 @@ $(document).ready(function(){
   $('#bg-solid-update').click(function(){
     canvas.backgroundImage = 0;
     var backgroundcolor = $('input#background-color').val();
+    backgroundcolor = "#" + backgroundcolor;
     canvas.setBackgroundColor(backgroundcolor, canvas.renderAll.bind(canvas));
   });
   // Open text editing panel

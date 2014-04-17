@@ -8,6 +8,7 @@
  var user = require('./routes/user');
  var meme = require('./routes/meme');
  var admin = require('./routes/admin');
+ var errors = require('./routes/error');
  var bg = require('./routes/bg');
  var images = require('./routes/images');
  var http = require('http');
@@ -17,7 +18,7 @@
 // Database
 
 var mongo = require('mongoskin');
-// var db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/aTevyb7y", {native_parser:true});
+// var db = mongo.db("mongodb://colpan:yoshi1@novus.modulusmongo.net:27017/edyGyq7u", {native_parser:true});
 var db = mongo.db("mongodb://localhost:27017/memeappdev", {native_parser:true});
 
 var app = express();
@@ -55,6 +56,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 app.get('/', function(req, res) { res.render('frontpage.html'); });
 app.get('/signup', function(req, res) { res.render('signup.html'); });
 app.get('/login', function(req, res) { res.render('login.html'); });
+app.get('/changepw', function(req, res) { res.render('changepw.html'); });
 
 // Post login
 app.get('/home', function(req, res) { res.render('home.html'); });
@@ -95,6 +97,9 @@ app.post('/register', user.register(db));
 app.post('/deletememe', meme.deletememe(db));
 app.post('/deletebg', bg.deletebg(db));
 app.post('/deleteimage', images.deleteimage(db));
+app.post('/changepw', user.changepw(db));
+
+app.post('/error', errors.submiterror(db));
 
 // Update
 app.post('/updatememe', meme.updateMeme(db));

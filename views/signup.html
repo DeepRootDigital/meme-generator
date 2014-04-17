@@ -30,7 +30,7 @@
         <h2>Sign Up</h2>
         <form class="form">
           <div class="label-case">
-            <label class="name">Name</label>
+            <label class="name">Username</label>
             <label class="email"></label>
             <label class="info"></label>
             <label class="address"></label>
@@ -45,13 +45,6 @@
             <p><span class="yes">0</span>/4</p>
           </div>
         </form>
-      <!-- <form action="" method="POST">
-        <input type="text" name="username" id="username" class="form-control" placeholder="username">
-        <input type="email" name="email" id="email" class="form-control" placeholder="email">
-        <input type="password" name="password" id="password" class="form-control" placeholder="password">
-        <input type="password" name="repassword" id="repassword" class="form-control" placeholder="repeat password">
-        <input type="submit" id="signup-register">
-      </form> -->
       <div class="error-box">
       </div>
       <div class="already">
@@ -60,9 +53,19 @@
       </div>
     </div>
   </div>
+  <div id="error-box">
+    <div class="error-tab">
+      <p>Feedback</p>
+    </div>
+    <form>
+      <textarea type="text" name="error-message" class="error-message form-control" placeholder="Message"></textarea>
+      <input type="submit" id="error-submit">
+    </form>
+  </div>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
   <script src="javascripts/signupin.js"></script>
   <script src="javascripts/global-front.js"></script>
+  <script type="text/javascript" src="javascripts/error.js"></script>
 </body>
 </html>

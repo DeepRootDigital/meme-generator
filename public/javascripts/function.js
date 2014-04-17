@@ -5,12 +5,13 @@ var boxcount = 0;
 var canvas = new fabric.Canvas('c');
 var memeListData = [];
 var activeObject;
-var socialtype;
+var templatename;
 
 $(document).ready(function(){
 	// Open new tab with image to be saved
 	$('.downloadmeme').click(function(){
 		var formattype = $(this).attr('id');
+    canvas.deactivateAllWithDispatch().renderAll();
 		var dataURL = canvas.toDataURL({format: formattype});
 		window.open(dataURL);
 	});
@@ -37,12 +38,24 @@ $(document).ready(function(){
 
   // Add delete function for active objects
   window.onkeyup = function(event) {
-    if (activeObject) {
-      if (event.keyCode == 46 || event.keyCode == 63272) {
+    if (event.keyCode == 46 || event.keyCode == 63272 || event.keyCode == 8) {
+      event.preventDefault();
+      if (activeObject) {
         canvas.remove(activeObject);
       }
     }
   };
+
+  $('.mememaker-left').on('mousedown',function(){
+    $('.box').removeClass('box');
+    $('.line').removeClass('line');
+    $('.textb').removeClass('textb');
+    $('.bg').removeClass('bg');
+    $('.icons').removeClass('icons');
+    $('.save').removeClass('save');
+    $('.dl').removeClass('dl');
+    $('.memeload').removeClass('memeload');
+  });
 
 });
 
@@ -110,6 +123,7 @@ function canvasBindings() {
 // Function to save the meme that is fired on clicking button
 function saveMeme(event){
 	event.preventDefault();
+  canvas.deactivateAllWithDispatch().renderAll();
 	// Basic validation to check name isn't empty, probably need more validation
 	if ($('#memename').val() === '') {
 		// Alert and return false if the name fails validation.
@@ -251,15 +265,26 @@ function loadCanvas(event) {
 		// Render canvas to the saved state
     $('#dropzone').html('<canvas id="c" width="' + thisMemeObject.width + 'px" height="' + thisMemeObject.height + 'px"></canvas>');
     canvas = new fabric.Canvas('c');
-    canvas.loadFromJSON(thisMemeObject.json,canvas.renderAll.bind(canvas));
+    canvas.loadFromJSON(thisMemeObject.json,function(){
+      applyImageFilters();
+    });
     activeObjects();
   } else {
     return false;
   }
 };
 
+function applyImageFilters() {
+  canvas.forEachObject(function(obj) {
+    if(obj.type === 'image' && obj.filters.length) {
+      obj.applyFilters(function(){
+        obj.canvas.renderAll();
+      });
+    }
+  });
+}
+
 function listImages() {
-	event.preventDefault();
 	var imageTable = '';
 	$.getJSON( '/imagelist', function( data) {
 		$.each(data, function(){
@@ -284,7 +309,6 @@ function loadImageCanvas(event) {
 };
 
 function listIcons() {
-	event.preventDefault();
 	var iconTable = '';
 	$.getJSON( '/iconlist', function( data) {
 		$.each(data, function(){
@@ -323,7 +347,6 @@ function loadIconCanvas(event) {
 };
 
 function dropzoneCanvas(filename) {
-  event.preventDefault();
   var thisIcon = filename;
   idnum = window.imagecount + 1;
   idnum = "image_" + idnum;
@@ -339,6 +362,7 @@ function addText(event) {
   idnum = "text_" + idnum;
   var textcontent = document.getElementById('addtext-text').value;
   var textcolor = document.getElementById('addtext-color').value;
+  textcolor = "#" + textcolor;
   var textsize = $('#addtext-fontsize').slider("option","value");
   if (textsize == 0) {
     textsize = 12;
@@ -357,6 +381,7 @@ function addText(event) {
 
 function updateText(event) {
   var newtextcolor = document.getElementById('updatetext-color').value;
+  newtextcolor = "#" + newtextcolor;
   var newtextsize = parseInt(document.getElementById('updatetext-fontsize').value);
   if (canvas.backgroundColor) {
     var backgroundcolor = canvas.backgroundColor;
@@ -370,6 +395,7 @@ function updateText(event) {
 
 function addLine(){
   var bgcolor = $('#addshape-color').val();
+  bgcolor = "#" + bgcolor;
   var lw = $('#addshape-lw').val();
   if (lw == '0' || lw == '') {
     lw = 1;
@@ -392,6 +418,7 @@ function addLine(){
 
 function updateLine() {
   var newlinecolor = document.getElementById('updateline-color').value;
+  newlinecolor = "#" + newlinecolor;
   var newlinelw = parseInt(document.getElementById('updateline-lw').value);
   if (canvas.backgroundColor) {
     var backgroundcolor = canvas.backgroundColor;
@@ -405,6 +432,7 @@ function updateLine() {
 
 function addBox(){
   var bgcolor = $('#addbox-color').val();
+  bgcolor = "#" + bgcolor;
   var opa = $('#addshape-opacity').slider("option","value");
   if (opa == '') {
     opa = 1;
@@ -428,6 +456,7 @@ function addBox(){
 
 function updateBox() {
   var newboxcolor = document.getElementById('updatebox-color').value;
+  newboxcolor = "#" + newboxcolor;
   var newboxopa = document.getElementById('updatebox-opacity').value;
   if (canvas.backgroundColor) {
     var backgroundcolor = canvas.backgroundColor;
@@ -463,14 +492,18 @@ function resizeCanvas(event) {
 }
 
 function socialLoad() {
-  if (getCookie("socialtype")) {
-    socialtype = getCookie("socialtype");
-    document.cookie = "socialtype=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  if (getCookie("templatename")) {
+    templatename = getCookie("templatename");
+    document.cookie = "templatename=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    /* $.getJSON( '/memelist', function( data ) {
+      var arrayPosition = data.map(function(arrayItem) { return arrayItem.filename; }).indexOf(thisIcon);
+      var thisIconObject = data[arrayPosition];
+    }); */
   }
-  if (socialtype == "facebook") {
+  if (templatename == "facebook") {
     var height = 504;
     var width = 403;
-  } else if (socialtype == "twitter") {
+  } else if (templatename == "twitter") {
     var height = 220;
     var width = 440;
   } else {

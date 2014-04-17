@@ -75,7 +75,7 @@ button:hover {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #fff;
+  color: #000;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
@@ -84,6 +84,14 @@ button:hover {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.options-container ul li .form-control {
+  color: #fff;
+}
+
+.options-container ul li select.form-control {
+  color: #000;
 }
 
 textarea.form-control {
@@ -192,6 +200,10 @@ div.updatecanvas {
   background: rgb(35, 119, 95);
   padding:25px;
   margin-left:-300px;
+}
+
+#error-box input, #error-box textarea {
+  color:rgb(0,0,0);
 }
 
 .error-tab {

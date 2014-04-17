@@ -283,8 +283,7 @@
   padding: 13px 0 0 12px;
   border: none;
   background-color: rgb(43, 43, 43);
-  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22); 
-  text-transform: uppercase;
+  box-shadow: inset 0px 0px 4px 1px rgb(22, 22, 22);
 }
 .test #addtext-color {
   height: 40px;

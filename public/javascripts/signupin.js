@@ -90,8 +90,8 @@ $(document).ready(function(){
 							$('.error-box').css('display','none');
 						}
 					});
-}
-} 
+        }
+			} 
 else if ($('.info').text() == 'Password') {
 	$('.address').text('Retype Password');
 	$('.address').animate({'top' : '-90px'}, 400);
@@ -373,15 +373,12 @@ $('#recover-my-pw').on("click",function(event){
 		$.each(data, function() {
 			if ($('#email-recovery').val() == this.email) {
 				userName = this.username;
-				console.log(userName);
 			}
 		});
 		if (userName == "") {
 			alert('That email is not in our records');
 		} else {
 			userName = CryptoJS.enc.Utf16.parse(userName);
-			userName = userName.toString();
-			console.log(userName);
 			var thedata = {'email':$('#email-recovery').val(), 'username':userName};
 			$.ajax({
 				type: 'POST',
@@ -396,9 +393,37 @@ $('#recover-my-pw').on("click",function(event){
 	});
 });
 
+$('#reset-change-pw').on('click',function(event){
+	event.preventDefault();
+	if ($('#password').val() == $('#repassword').val()) {
+		var userName = getURLParameter('id');
+		console.log(userName);
+		userName = CryptoJS.enc.Utf16.stringify(userName);
+		console.log(userName);
+		var hashpw = CryptoJS.SHA3($('#password').val()).toString();
+		$('.error-box').html('');
+		$.ajax({
+				type: 'POST',
+				data: {'username':userName, 'password':hashpw},
+				url: '/changepw',
+				dataType: 'JSON'
+			})
+			.done(function(response){
+				document.cookie = "id="+userName;
+				// window.location = "/home";
+			});
+	} else {
+		$('.error-box').html('<p>Username does not exist.</p>');
+	}
+});
+
 });
 
 function isValidEmailAddress(emailAddress) {
 	var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
 	return pattern.test(emailAddress);
+};
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
 };

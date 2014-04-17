@@ -120,7 +120,7 @@ button:focus {
 }
 .close-menu {
 	display: inline !important;
-	margin: 15px 0 0 25px;
+	margin: 15px 0 0 35px;
 	cursor: pointer;
 	font-family: raleway;
 	font-weight: 300;
@@ -132,7 +132,7 @@ button:focus {
 }
 .log-out {
 	display: inline !important;
-	margin: 15px 0 0px 20px;
+	margin: 15px 0 0px 15px;
 	cursor: pointer;
 	font-family: raleway;
 	font-weight: 300;

@@ -12,9 +12,9 @@ $(document).ready(function(){
 	$('.downloadmeme').click(function(){
 		var formattype = $(this).attr('id');
     canvas.deactivateAllWithDispatch().renderAll();
-		var dataURL = canvas.toDataURL({format: formattype});
-		window.open(dataURL);
-	});
+    var dataURL = canvas.toDataURL({format: formattype});
+    window.open(dataURL);
+  });
 	
 
 	// Populate saved memes the select menu to be loaded
@@ -280,6 +280,8 @@ function applyImageFilters() {
       obj.applyFilters(function(){
         obj.canvas.renderAll();
       });
+    } else {
+      canvas.renderAll();
     }
   });
 }
@@ -471,22 +473,9 @@ function updateBox() {
 function resizeCanvas(event) {
 	// Resize the canvas in all aspects and resize stuff on the canvas
 	event.preventDefault();
-	var oldwidth = $('.canvas-container').css('width');
-	var oldheight = $('.canvas-container').css('height');
 	var width = $('#canvas-width').val();
 	var height = $('#canvas-height').val();
-	$('.canvas-container').css('width',width+'px');
-	$('.canvas-container').css('height',height+'px');
-	$('#c').attr('width',width+'px');
-	$('#c').attr('height',height+'px');
-	$('#c').css('width',width+'px');
-	$('#c').css('height',height+'px');
-	$('.upper-canvas').attr('width',width+'px');
-	$('.upper-canvas').attr('height',height+'px');
-	$('.upper-canvas').css('width',width+'px');
-	$('.upper-canvas').css('height',height+'px');
-	canvas.width = width;
-	canvas.height = height;
+	sizecanvas(width,height);
 	var jsonstring = canvas.toJSON();
 	canvas.loadFromJSON(jsonstring,canvas.renderAll.bind(canvas));
 }
@@ -495,21 +484,38 @@ function socialLoad() {
   if (getCookie("templatename")) {
     templatename = getCookie("templatename");
     document.cookie = "templatename=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    /* $.getJSON( '/memelist', function( data ) {
-      var arrayPosition = data.map(function(arrayItem) { return arrayItem.filename; }).indexOf(thisIcon);
-      var thisIconObject = data[arrayPosition];
-    }); */
-  }
-  if (templatename == "facebook") {
-    var height = 504;
-    var width = 403;
-  } else if (templatename == "twitter") {
-    var height = 220;
-    var width = 440;
+    if (templatename == "facebook") {
+      var height = 504;
+      var width = 403;
+      sizecanvas(width,height);
+    } else if (templatename == "twitter") {
+      var height = 220;
+      var width = 440;
+      sizecanvas(width,height);
+    } else {
+      $.getJSON( '/memelist', function( data ) {
+        $.each(data, function(){
+          if (this.username == getCookie('id') && this.memename == templatename) {
+            $('#dropzone').html('<canvas id="c" width="' + this.width + 'px" height="' + this.height + 'px"></canvas>');
+            canvas = new fabric.Canvas('c');
+            canvas.loadFromJSON(this.json,function(){
+              applyImageFilters();
+            });
+            activeObjects();
+            return;
+          }
+        });
+      });
+    }
   } else {
     var height = 651;
     var width = 630;
+    sizecanvas(width,height);
   }
+  
+}
+
+function sizecanvas(width,height) {
   $('.canvas-container').css('width',width+'px');
   $('.canvas-container').css('height',height+'px');
   $('#c').attr('width',width+'px');
